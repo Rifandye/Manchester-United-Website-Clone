@@ -12,7 +12,7 @@ module.exports = class AuthController {
 
       res.status(201).json(data);
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   }
 
@@ -20,15 +20,21 @@ module.exports = class AuthController {
     try {
       const { email, password } = req.body;
 
+      if (!email) throw { name: "EmailIsRequired" };
+
+      if (!password) throw { name: "PasswordIsRequired" };
+
       const user = await User.findOne({ where: { email } });
 
       const comparedPasssword = comparePass(password, user.password);
+
+      if (!comparedPasssword) throw { name: "EmailNotRegistered" };
 
       const access_token = signToken({ id: user.id });
 
       res.status(200).json({ access_token });
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   }
 };
