@@ -12,6 +12,9 @@ const errorHandler = (err, req, res, next) => {
     case "EmailNotRegistered":
       res.status(400).json({ message: "Email/Invalid is required" });
       break;
+    case "CategoryNotFound":
+      res.status(400).json({ message: "Category not Not Found" });
+      break;
     default:
       console.log(err);
       res.status(500).json({ message: "Internal Server Error" });

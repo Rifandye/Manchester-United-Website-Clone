@@ -14,4 +14,25 @@ module.exports = class CategoryController {
       next(error);
     }
   }
+
+  static async postCategory(req, res, next) {
+    try {
+      const category = await Category.create(req.body);
+
+      res.status(201).json(category);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async deleteCategoriesById(req, res, next) {
+    try {
+      const category = await Category.destroy({
+        where: { id: req.params.id },
+      });
+      if (!category) throw { name: "CategoryNotFound" };
+    } catch (error) {
+      next(error);
+    }
+  }
 };
