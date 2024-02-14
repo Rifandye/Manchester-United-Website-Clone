@@ -8,6 +8,9 @@ module.exports = class AuthController {
       const user = await User.create(req.body);
       const data = await User.findOne({
         where: { id: user.id },
+        attributes: {
+          exclude: ["password", "phoneNumber", "createdAt", "updatedAt"],
+        },
       });
 
       res.status(201).json(data);
