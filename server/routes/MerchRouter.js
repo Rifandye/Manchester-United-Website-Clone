@@ -1,9 +1,10 @@
 const express = require("express");
 const MerchController = require("../controllers/MercController");
 const router = express.Router();
+const { authorizationForAdmin } = require("../middlewares/Authorization");
 
-router.post("/", MerchController.postMerch);
-router.get("/", MerchController.getAllMerch);
-router.get("/:id", MerchController.getMerchById);
+router.post("/", authorizationForAdmin, MerchController.postMerch);
+router.get("/", authorizationForAdmin, MerchController.getAllMerch);
+router.get("/:id", authorizationForAdmin, MerchController.getMerchById);
 
 module.exports = router;
