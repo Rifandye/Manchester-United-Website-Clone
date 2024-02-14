@@ -1,15 +1,15 @@
 "use strict";
 const { Model } = require("sequelize");
+const priceFormat = require("../helpers/convertPrice");
 module.exports = (sequelize, DataTypes) => {
   class Merchandise extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       Merchandise.hasMany(models.Order);
       Merchandise.hasMany(models.Merchandise_Category);
+    }
+
+    get formattedPrice() {
+      return priceFormat(this.salary);
     }
   }
   Merchandise.init(

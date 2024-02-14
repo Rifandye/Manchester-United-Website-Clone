@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Merchandise_Category.init(
     {
-      MerchandisesId: {
+      MerchandiseId: {
         type: DataTypes.INTEGER,
       },
 
