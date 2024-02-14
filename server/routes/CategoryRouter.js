@@ -3,5 +3,7 @@ const CategoryController = require("../controllers/CategoryController");
 const router = express.Router();
 
 router.get("/", CategoryController.getAllCategories);
+router.post("/", CategoryController.postCategory);
+router.delete("/:id", CategoryController.deleteCategoriesById);
 
 module.exports = router;
