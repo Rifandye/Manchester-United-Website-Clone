@@ -9,12 +9,21 @@ module.exports = class MerchController {
     try {
       const merch = await Merchandise.create(req.body);
 
-      const categoryId = req.body.CategoryId;
+      const categoryIds = req.body.CategoryId;
 
-      await Merchandise_Category.create({
-        MerchandiseId: merch.id,
-        CategoryId: categoryId,
-      });
+      if (Array.isArray(categoryIds)) {
+        for (const categoryId of categoryIds) {
+          await Merchandise_Category.create({
+            MerchandiseId: merch.id,
+            CategoryId: categoryId,
+          });
+        }
+      } else {
+        await Merchandise_Category.create({
+          MerchandiseId: merch.id,
+          CategoryId: categoryIds,
+        });
+      }
 
       const data = await Merchandise.findOne({
         where: { id: merch.id },

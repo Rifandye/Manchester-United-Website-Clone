@@ -1,0 +1,184 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+function AddMerch() {
+  const navigate = useNavigate();
+  const [categoryData, setCategoryData] = useState([]);
+  const [merchInput, setMerchInput] = useState({
+    name: "",
+    description: "",
+    imageUrl: "",
+    price: "",
+    CategoryId: "",
+  });
+
+  function handleInputMerch(event) {
+    const { name, value, checked } = event.target;
+
+    if (name === "categories") {
+      if (checked) {
+        setMerchInput({
+          ...merchInput,
+          CategoryId: [...merchInput.CategoryId, value],
+        });
+      } else {
+        setMerchInput({
+          ...merchInput,
+          CategoryId: merchInput.CategoryId.filter((id) => id !== value),
+        });
+      }
+    } else {
+      setMerchInput({
+        ...merchInput,
+        [name]: value,
+      });
+    }
+  }
+
+  async function handleSubmitMerch(event) {
+    event.preventDefault();
+
+    try {
+      const response = await axios({
+        method: "POST",
+        url: "http://localhost:3000/merchandises",
+        data: merchInput,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      });
+
+      console.log(response);
+      navigate("/merchandises");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function fethData() {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: "http://localhost:3000/categories",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      });
+
+      setCategoryData(data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
+
+  useEffect(() => {
+    fethData();
+  }, []);
+
+  return (
+    <div className="w-full max-w-lg mx-auto">
+      <h2 className="text-center text-2xl font-bold mb-6 mt-6">
+        Add Merchandise
+      </h2>
+      <form onSubmit={handleSubmitMerch}>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="name"
+          >
+            Name:
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="name"
+            type="text"
+            name="name"
+            placeholder="Name"
+            onChange={handleInputMerch}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="description"
+          >
+            Description:
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="description"
+            type="text"
+            name="description"
+            placeholder="Description"
+            onChange={handleInputMerch}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="imageUrl"
+          >
+            Image URL:
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="imageUrl"
+            type="text"
+            name="imageUrl"
+            placeholder="Image URL"
+            onChange={handleInputMerch}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="price"
+          >
+            Price:
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="price"
+            name="price"
+            type="number"
+            placeholder="Price"
+            onChange={handleInputMerch}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Categories:
+          </label>
+          {categoryData.map((category) => (
+            <div key={category.id} className="flex items-center">
+              <input
+                className="mr-2 leading-tight"
+                type="checkbox"
+                id={category.id}
+                name="categories"
+                value={category.id}
+                onChange={handleInputMerch}
+              />
+              <label className="mr-4 text-gray-700" htmlFor={category.id}>
+                {category.name}
+              </label>
+            </div>
+          ))}
+        </div>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default AddMerch;

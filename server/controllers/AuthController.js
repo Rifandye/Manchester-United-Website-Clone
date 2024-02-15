@@ -1,6 +1,9 @@
 const { comparePass } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const { User } = require("../models/index");
+const { OAuth2Client } = require("google-auth-library");
+
+const oauth2client = new OAuth2Client();
 
 module.exports = class AuthController {
   static async createUser(req, res, next) {
@@ -36,6 +39,41 @@ module.exports = class AuthController {
       const access_token = signToken({ id: user.id });
 
       res.status(200).json({ access_token });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async googleLogin(req, res, next) {
+    console.log(req.headers);
+    try {
+      const ticket = await oauth2client.verifyIdToken({
+        idToken: req.headers["google-token"],
+        audience:
+          "569645514479-mmmij55tojuknn5nl4h239spdte9qr9s.apps.googleusercontent.com",
+      });
+
+      const payload = ticket.getPayload();
+      console.log(payload);
+
+      let user = await User.findOne({
+        where: {
+          email: payload.email,
+        },
+      });
+
+      if (!user) {
+        user = await User.create({
+          firstname: payload.given_name,
+          lastname: payload.family_name,
+          email: payload.email,
+          password: "dummy-password-" + Date.now() + Math.random(),
+        });
+      }
+
+      const access_token = signToken({ id: user.id });
+
+      res.status(201).json({ access_token });
     } catch (error) {
       next(error);
     }

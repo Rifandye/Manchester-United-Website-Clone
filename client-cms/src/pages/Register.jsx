@@ -68,9 +68,9 @@ function Register() {
                 </div>
                 <div className="w-auto p-2">
                   <p className="text-sm text-gray-300">
-                    <span>Alreade have account?</span>
-                    <Link to="/login">
-                      <a className="underline">Sign in</a>
+                    <span>Already have an account?</span>
+                    <Link to="/login" className="underline">
+                      Sign in
                     </Link>
                   </p>
                 </div>
@@ -95,7 +95,6 @@ function Register() {
                   <div className="w-full p-1">
                     <a
                       className="p-5 flex flex-wrap justify-center bg-gray-900 hover:bg-gray-900 bg-opacity-30 hover:bg-opacity-10 rounded-full transition duration-300"
-                      href="#"
                     >
                       <div className="mr-4 inline-block">
                         <img
@@ -105,22 +104,6 @@ function Register() {
                       </div>
                       <span className="text-sm text-white font-medium">
                         Sign up with Google
-                      </span>
-                    </a>
-                  </div>
-                  <div className="w-full p-1">
-                    <a
-                      className="p-5 flex flex-wrap justify-center bg-gray-900 hover:bg-gray-900 bg-opacity-30 hover:bg-opacity-10 rounded-full transition duration-300"
-                      href="#"
-                    >
-                      <div className="mr-4 inline-block">
-                        <img
-                          src=""
-                          alt=""
-                        />
-                      </div>
-                      <span className="text-sm text-white font-medium">
-                        Sign up with Apple
                       </span>
                     </a>
                   </div>

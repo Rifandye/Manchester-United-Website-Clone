@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     get formattedPrice() {
-      return priceFormat(this.salary);
+      return priceFormat(this.price);
     }
   }
   Merchandise.init(

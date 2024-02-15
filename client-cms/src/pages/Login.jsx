@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,6 +9,36 @@ function Login() {
     email: "",
     password: "",
   });
+
+  const handleCredentialResponse = async (response) => {
+    try {
+      const { data } = await axios({
+        method: "POST",
+        url: "http://localhost:3000/google-login",
+        headers: {
+          "google-token": response.credential,
+        },
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    google.accounts.id.initialize({
+      client_id:
+        "569645514479-mmmij55tojuknn5nl4h239spdte9qr9s.apps.googleusercontent.com",
+      callback: handleCredentialResponse,
+    });
+    //ini button
+    google.accounts.id.renderButton(
+      document.getElementById("google-button"),
+      { theme: "outline", size: "large" } // customization attributes
+    );
+    //ini one tap
+    google.accounts.id.prompt(); // also display the One Tap dialog
+  }, []);
 
   function handleInputLoginForm(event) {
     const { name, value } = event.target;
@@ -28,8 +58,11 @@ function Login() {
         data: loginInput,
       });
 
+      localStorage.setItem("access_token", response.data.access_token);
       navigate("/merchandises");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -83,8 +116,8 @@ function Login() {
                   <div className="w-auto p-2">
                     <p className="text-sm text-gray-300">
                       <span>Dont have an account?</span>
-                      <Link to="/register">
-                        <a className="underline">Sign up</a>
+                      <Link to="/register" className="underline">
+                        Sign up
                       </Link>
                     </p>
                   </div>
@@ -119,30 +152,14 @@ function Login() {
                       href="#"
                     >
                       <div className="mr-4 inline-block">
-                        <img
-                          src="nightsable-assets/images/sign-in/google.svg"
-                          alt=""
-                        />
+                        <img src="" alt="" />
                       </div>
-                      <span className="text-sm text-white font-medium">
+                      <button
+                        id="google-button"
+                        className="text-sm text-white font-medium"
+                      >
                         Sign in with Google
-                      </span>
-                    </a>
-                  </div>
-                  <div className="w-full p-1">
-                    <a
-                      className="p-5 flex flex-wrap justify-center bg-gray-900 hover:bg-gray-900 bg-opacity-30 hover:bg-opacity-10 rounded-full transition duration-300"
-                      href="#"
-                    >
-                      <div className="mr-4 inline-block">
-                        <img
-                          src="nightsable-assets/images/sign-in/apple-logo.svg"
-                          alt=""
-                        />
-                      </div>
-                      <span className="text-sm text-white font-medium">
-                        Sign in with Apple
-                      </span>
+                      </button>
                     </a>
                   </div>
                 </div>
