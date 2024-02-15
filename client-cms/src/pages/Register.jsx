@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Register() {
   return (
     <div className="bg-black">
@@ -67,9 +69,9 @@ function Register() {
                 <div className="w-auto p-2">
                   <p className="text-sm text-gray-300">
                     <span>Alreade have account?</span>
-                    <a className="underline" href="#">
-                      Sign in
-                    </a>
+                    <Link to="/login">
+                      <a className="underline">Sign in</a>
+                    </Link>
                   </p>
                 </div>
                 <a
@@ -113,7 +115,7 @@ function Register() {
                     >
                       <div className="mr-4 inline-block">
                         <img
-                          src="nightsable-assets/images/sign-in/apple-logo.svg"
+                          src=""
                           alt=""
                         />
                       </div>
