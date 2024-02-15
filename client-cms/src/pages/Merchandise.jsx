@@ -26,6 +26,30 @@ function Merchandise() {
     fethData();
   }, []);
 
+  async function deleteDataById(id) {
+    try {
+      const response = await axios({
+        method: "DELETE",
+        url: `http://localhost:3000/merchandises/${id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      });
+
+      setMerchandiseData((prevData) =>
+        prevData.filter((item) => item.id !== id)
+      );
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
+
+  const navigate = useNavigate();
+
+  function handleButton(id) {
+    navigate(`/merchandises/${id}`);
+  }
+
   return (
     <div className="flex flex-col items-center">
       <Link
@@ -55,13 +79,17 @@ function Merchandise() {
             <div className="absolute bottom-0 left-0 w-full flex justify-center mb-4">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded"
-                onClick={() => navigate(`/merchandise/${item.id}`)}
+                onClick={() => {
+                  handleButton(item.id);
+                }}
               >
                 Edit
               </button>
               <button
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => handleDelete(item.id)}
+                onClick={() => {
+                  deleteDataById(item.id);
+                }}
               >
                 Delete
               </button>

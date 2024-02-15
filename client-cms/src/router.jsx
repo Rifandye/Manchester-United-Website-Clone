@@ -5,6 +5,7 @@ import Merchandise from "./pages/Merchandise";
 import Layout from "./pages/LayoutPage";
 import Category from "./pages/Category";
 import AddMerch from "./pages/AddMerchandise";
+import EditMerchandise from "./pages/EditMerchandise";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/add-merchandise",
         element: <AddMerch />,
+      },
+      {
+        path: "/merchandises/:id",
+        element: <EditMerchandise />,
       },
     ],
   },

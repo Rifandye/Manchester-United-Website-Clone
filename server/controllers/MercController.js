@@ -53,9 +53,36 @@ module.exports = class MerchController {
 
   static async getMerchById(req, res, next) {
     try {
-      const merch = await Merchandise.findOne({
+      const merch = await Merchandise.findByPk(req.params.id);
+      console.log(merch);
+      res.status(200).json(merch);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async deleteMerchById(req, res, next) {
+    try {
+      //!delete dulu yang ada di table conjuction baru bisa delete table Merchandise(FK constraint)
+      await Merchandise_Category.destroy({
+        where: { MerchandiseId: req.params.id },
+      });
+
+      const merch = await Merchandise.destroy({
         where: { id: req.params.id },
       });
+
+      res.status(200).json(merch);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async updateMerchById(req, res, next) {
+    try {
+      const merch = await Merchandise.findByPk(req.params.id);
+      await merch.update(req.body);
+
       res.status(200).json(merch);
     } catch (error) {
       next(error);
