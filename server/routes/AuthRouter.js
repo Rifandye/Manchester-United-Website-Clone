@@ -6,4 +6,5 @@ router.post("/add-user", AuthController.createUser);
 router.post("/login", AuthController.login);
 router.post("/google-login", AuthController.googleLogin);
 
+
 module.exports = router;

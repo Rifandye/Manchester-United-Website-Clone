@@ -6,8 +6,18 @@ import Layout from "./pages/LayoutPage";
 import Category from "./pages/Category";
 import AddMerch from "./pages/AddMerchandise";
 import EditMerchandise from "./pages/EditMerchandise";
+import SeeDetail from "./pages/SeeDetailCategory";
+
 
 const router = createBrowserRouter([
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
   {
     element: <Layout />,
     children: [
@@ -20,6 +30,10 @@ const router = createBrowserRouter([
         element: <Category />,
       },
       {
+        path: "/categories/:id",
+        element: <SeeDetail />,
+      },
+      {
         path: "/add-merchandise",
         element: <AddMerch />,
       },
@@ -28,14 +42,6 @@ const router = createBrowserRouter([
         element: <EditMerchandise />,
       },
     ],
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
   },
 ]);
 

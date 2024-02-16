@@ -19,6 +19,12 @@ function Login() {
           "google-token": response.credential,
         },
       });
+
+      localStorage.setItem("access_token", data.access_token);
+      window.location.replace(
+        `http://localhost:5174/?token=${data.access_token}`
+      );
+
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -58,8 +64,17 @@ function Login() {
         data: loginInput,
       });
 
+      const { access_token, role } = response.data;
+
       localStorage.setItem("access_token", response.data.access_token);
-      navigate("/merchandises");
+
+      if (role === "Admin") {
+        navigate("/merchandises");
+      } else {
+        window.location.replace("http://localhost:5174/");
+      }
+
+      // navigate("/merchandises");
     } catch (error) {
       console.log(error);
     }

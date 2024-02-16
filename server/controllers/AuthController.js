@@ -38,7 +38,9 @@ module.exports = class AuthController {
 
       const access_token = signToken({ id: user.id });
 
-      res.status(200).json({ access_token });
+      const role = user.role;
+
+      res.status(200).json({ access_token, role });
     } catch (error) {
       next(error);
     }
@@ -49,8 +51,7 @@ module.exports = class AuthController {
     try {
       const ticket = await oauth2client.verifyIdToken({
         idToken: req.headers["google-token"],
-        audience:
-          "569645514479-mmmij55tojuknn5nl4h239spdte9qr9s.apps.googleusercontent.com",
+        audience: process.env.GOOGLE_KEY,
       });
 
       const payload = ticket.getPayload();
