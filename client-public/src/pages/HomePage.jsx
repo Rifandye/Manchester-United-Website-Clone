@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Home() {
   const location = useLocation();
@@ -60,12 +60,12 @@ function Home() {
                     >
                       Shop Now
                     </a>
-                    <a
-                      href="#"
+                    <Link
+                      to="/news"
                       className="bg-black rounded-full border border-gray-200 focus:ring-4 focus:ring-gray-200 text-white text-sm font-semibold px-8 h-12 inline-flex items-center transition duration-200"
                     >
                       Explore More
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

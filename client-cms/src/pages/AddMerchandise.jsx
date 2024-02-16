@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddMerch() {
   const navigate = useNavigate();
@@ -52,7 +54,7 @@ function AddMerch() {
       console.log(response);
       navigate("/merchandises");
     } catch (error) {
-      console.log(error);
+      toast.error("Invalid Input");
     }
   }
 
@@ -96,7 +98,6 @@ function AddMerch() {
             name="name"
             placeholder="Name"
             onChange={handleInputMerch}
-            required
           />
         </div>
         <div className="mb-4">
@@ -113,7 +114,6 @@ function AddMerch() {
             name="description"
             placeholder="Description"
             onChange={handleInputMerch}
-            required
           />
         </div>
         <div className="mb-4">
@@ -130,7 +130,6 @@ function AddMerch() {
             name="imageUrl"
             placeholder="Image URL"
             onChange={handleInputMerch}
-            required
           />
         </div>
         <div className="mb-4">
@@ -147,7 +146,6 @@ function AddMerch() {
             type="number"
             placeholder="Price"
             onChange={handleInputMerch}
-            required
           />
         </div>
         <div className="mb-4">

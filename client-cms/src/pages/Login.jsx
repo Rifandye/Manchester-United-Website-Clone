@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -76,7 +78,7 @@ function Login() {
 
       // navigate("/merchandises");
     } catch (error) {
-      console.log(error);
+      toast.error("Invalid credentials!");
     }
   }
 

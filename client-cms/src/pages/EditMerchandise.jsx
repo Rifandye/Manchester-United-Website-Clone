@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function EditMerchandise() {
   const navigate = useNavigate();
@@ -56,7 +58,7 @@ function EditMerchandise() {
       console.log(response.data);
       navigate("/merchandises");
     } catch (error) {
-      console.log(error.response.data);
+      toast.error("Invalid input");
     }
   }
 
@@ -81,7 +83,6 @@ function EditMerchandise() {
             placeholder="Name"
             value={editInput.name}
             onChange={handleInputDataForm}
-            required
           />
         </div>
         <div className="mb-4">
@@ -99,7 +100,6 @@ function EditMerchandise() {
             placeholder="Description"
             value={editInput.description}
             onChange={handleInputDataForm}
-            required
           />
         </div>
         <div className="mb-4">
@@ -117,7 +117,6 @@ function EditMerchandise() {
             placeholder="Image URL"
             value={editInput.imageUrl}
             onChange={handleInputDataForm}
-            required
           />
         </div>
         <div className="mb-4">
@@ -135,7 +134,6 @@ function EditMerchandise() {
             placeholder="Price"
             value={editInput.price}
             onChange={handleInputDataForm}
-            required
           />
         </div>
         <button
