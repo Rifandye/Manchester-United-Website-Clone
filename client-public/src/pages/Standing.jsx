@@ -5,7 +5,9 @@ function Standing() {
   const [standingData, setStandingData] = useState([]);
   async function fethData() {
     try {
-      const response = await axios.get("http://localhost:3000/pub/standings");
+      const response = await axios.get(
+        import.meta.env.VITE_BASE_URL + "/pub/standings"
+      );
       if (Array.isArray(response.data) && response.data.length > 0) {
         const standings = response.data[0];
         const flattenedStandings = standings.reduce(

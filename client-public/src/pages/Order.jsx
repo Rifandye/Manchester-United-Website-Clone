@@ -11,7 +11,7 @@ function Order() {
     try {
       const response = await axios({
         method: "GET",
-        url: "http://localhost:3000/pub/merchandises",
+        url: import.meta.env.VITE_BASE_URL + "/pub/merchandises",
       });
 
       console.log(response.data);

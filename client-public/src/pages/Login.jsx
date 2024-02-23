@@ -16,16 +16,13 @@ function Login() {
     try {
       const { data } = await axios({
         method: "POST",
-        url: "http://localhost:3000/google-login",
+        url: import.meta.env.VITE_BASE_URL + "/google-login",
         headers: {
           "google-token": response.credential,
         },
       });
 
       localStorage.setItem("access_token", data.access_token);
-      window.location.replace(
-        `http://localhost:5174/?token=${data.access_token}`
-      );
 
       console.log(data);
     } catch (error) {
@@ -62,7 +59,7 @@ function Login() {
     try {
       const response = await axios({
         method: "POST",
-        url: "http://localhost:3000/login",
+        url: import.meta.env.VITE_BASE_URL + "/login",
         data: loginInput,
       });
 
@@ -70,11 +67,7 @@ function Login() {
 
       localStorage.setItem("access_token", response.data.access_token);
 
-      if (role === "Admin") {
-        navigate("/merchandises");
-      } else {
-        window.location.replace("http://localhost:5174/");
-      }
+      navigate("/");
 
       // navigate("/merchandises");
     } catch (error) {
