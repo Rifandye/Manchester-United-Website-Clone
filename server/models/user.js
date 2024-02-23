@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-
       lastname: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -39,7 +38,6 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-
       email: {
         allowNull: false,
         unique: {
@@ -53,9 +51,11 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: {
             msg: "Email is required",
           },
+          isEmail: {
+            msg: "Enter a valid email address",
+          },
         },
       },
-
       password: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -68,12 +68,6 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-
-      phoneNumber: {
-        allowNull: true,
-        type: DataTypes.STRING,
-      },
-
       role: {
         type: DataTypes.STRING,
         defaultValue: "Fans",

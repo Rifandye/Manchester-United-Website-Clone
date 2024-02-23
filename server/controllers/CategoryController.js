@@ -1,8 +1,4 @@
-const {
-  Category,
-  Merchandise_Category,
-  Merchandise,
-} = require("../models/index");
+const { Category, Catalogue, Merchandise } = require("../models/index");
 
 module.exports = class CategoryController {
   static async getAllCategories(req, res, next) {
@@ -24,10 +20,12 @@ module.exports = class CategoryController {
       const category = await Category.findAll({
         where: { id: req.params.id },
         include: {
-          model: Merchandise_Category,
+          model: Catalogue,
           include: Merchandise,
         },
       });
+
+      if (category.length === 0) throw { name: "CategoryNotFound" };
 
       res.status(200).json(category);
     } catch (error) {
@@ -51,6 +49,8 @@ module.exports = class CategoryController {
         where: { id: req.params.id },
       });
       if (!category) throw { name: "CategoryNotFound" };
+
+      res.status(200).json({ message: "The Category has been deleted" });
     } catch (error) {
       next(error);
     }

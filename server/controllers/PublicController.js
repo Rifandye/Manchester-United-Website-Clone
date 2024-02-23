@@ -1,14 +1,11 @@
-const {
-  Merchandise,
-  Merchandise_Category,
-  Category,
-  Order,
-} = require("../models/index");
+const { Merchandise, Catalogue, Category, Order } = require("../models/index");
 
 module.exports = class PublicController {
   static async getAllMerchandisePub(req, res, next) {
     try {
-      const merch = await Merchandise.findAll();
+      const merch = await Merchandise.findAll({
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      });
 
       res.status(200).json(merch);
     } catch (error) {
@@ -63,7 +60,7 @@ module.exports = class PublicController {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "bbb8d67106msh6cd76122f501ae0p1d5a96jsnfbd8652323b7",
+        "X-RapidAPI-Key": process.env.X_RAPIDAPI_KEY,
         "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
       },
     };
@@ -86,7 +83,7 @@ module.exports = class PublicController {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "bbb8d67106msh6cd76122f501ae0p1d5a96jsnfbd8652323b7",
+        "X-RapidAPI-Key": process.env.X_RAPIDAPI_KEY,
         "X-RapidAPI-Host": "football-news-aggregator-live.p.rapidapi.com",
       },
     };

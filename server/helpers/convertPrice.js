@@ -1,5 +1,5 @@
 function priceFormat(price) {
-  const formattedPrice = new Intl.NumberFormat("en-Gb", {
+  const formattedPrice = new Intl.NumberFormat("en-GB", {
     style: "currency",
     currency: "GBP",
   });

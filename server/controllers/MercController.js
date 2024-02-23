@@ -1,8 +1,4 @@
-const {
-  Merchandise,
-  Category,
-  Merchandise_Category,
-} = require("../models/index");
+const { Merchandise, Category, Catalogue } = require("../models/index");
 
 module.exports = class MerchController {
   static async postMerch(req, res, next) {
@@ -13,13 +9,13 @@ module.exports = class MerchController {
 
       if (Array.isArray(categoryIds)) {
         for (const categoryId of categoryIds) {
-          await Merchandise_Category.create({
+          await Catalogue.create({
             MerchandiseId: merch.id,
             CategoryId: categoryId,
           });
         }
       } else {
-        await Merchandise_Category.create({
+        await Catalogue.create({
           MerchandiseId: merch.id,
           CategoryId: categoryIds,
         });
@@ -27,12 +23,19 @@ module.exports = class MerchController {
 
       const data = await Merchandise.findOne({
         where: { id: merch.id },
-        include: {
-          model: Merchandise_Category,
-          include: {
-            model: Category,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+        include: [
+          {
+            model: Catalogue,
+            attributes: { exclude: ["createdAt", "updatedAt"] },
+            include: [
+              {
+                model: Category,
+                attributes: { exclude: ["createdAt", "updatedAt"] },
+              },
+            ],
           },
-        },
+        ],
       });
 
       res.status(201).json(data);
@@ -43,7 +46,9 @@ module.exports = class MerchController {
 
   static async getAllMerch(req, res, next) {
     try {
-      const merch = await Merchandise.findAll();
+      const merch = await Merchandise.findAll({
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      });
 
       res.status(200).json(merch);
     } catch (error) {
@@ -54,7 +59,9 @@ module.exports = class MerchController {
   static async getMerchById(req, res, next) {
     try {
       const merch = await Merchandise.findByPk(req.params.id);
-      console.log(merch);
+
+      if (merch === null) throw { name: "NotFound" };
+
       res.status(200).json(merch);
     } catch (error) {
       next(error);
@@ -64,7 +71,7 @@ module.exports = class MerchController {
   static async deleteMerchById(req, res, next) {
     try {
       //!delete dulu yang ada di table conjuction baru bisa delete table Merchandise(FK constraint)
-      await Merchandise_Category.destroy({
+      await Catalogue.destroy({
         where: { MerchandiseId: req.params.id },
       });
 
@@ -72,7 +79,9 @@ module.exports = class MerchController {
         where: { id: req.params.id },
       });
 
-      res.status(200).json(merch);
+      if (!merch) throw { name: "NotFound" };
+
+      res.status(200).json({ message: "A Merchandise has been deleted" });
     } catch (error) {
       next(error);
     }

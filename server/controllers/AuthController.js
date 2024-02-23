@@ -8,6 +8,7 @@ const oauth2client = new OAuth2Client();
 module.exports = class AuthController {
   static async createUser(req, res, next) {
     try {
+      console.log(req.body);
       const user = await User.create(req.body);
       const data = await User.findOne({
         where: { id: user.id },
