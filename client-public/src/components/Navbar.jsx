@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+
   const cartCount = useSelector((state) => state.counter.count);
   function logOut() {
     localStorage.clear();
-    window.location.replace("http://localhost:5173/login");
+    navigate("/login");
   }
   return (
     <>
