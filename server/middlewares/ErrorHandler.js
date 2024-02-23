@@ -1,6 +1,7 @@
 const errorHandler = (err, req, res, next) => {
   switch (err.name) {
     case "SequelizeValidationError":
+    case "SequelizeUniqueConstraintError":
       res.status(400).json({ message: err.errors[0].message });
       break;
     case "EmailIsRequired":
@@ -10,10 +11,10 @@ const errorHandler = (err, req, res, next) => {
       res.status(400).json({ message: "Password cannot empty" });
       break;
     case "EmailNotRegistered":
-      res.status(400).json({ message: "Email/Invalid is required" });
+      res.status(400).json({ message: "Email/Invalid is invalid" });
       break;
     case "CategoryNotFound":
-      res.status(400).json({ message: "Category not Not Found" });
+      res.status(404).json({ message: "Category not Not Found" });
       break;
     case "InvalidToken":
     case "JsonWebTokenError":
@@ -21,6 +22,9 @@ const errorHandler = (err, req, res, next) => {
       break;
     case "Forbidden":
       res.status(401).json({ message: "Only Admin can do this!" });
+      break;
+    case "NotFound":
+      res.status(404).json({ message: "Merchandise not found" });
       break;
     default:
       console.log(err);
