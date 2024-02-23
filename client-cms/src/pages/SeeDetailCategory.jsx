@@ -18,11 +18,11 @@ function SeeDetail() {
 
       console.log(data);
       const merchandiseData = data.flatMap((category) =>
-        category.Merchandise_Categories.map((item) => item.Merchandise)
+        category.Catalogues.map((item) => item.Merchandise)
       );
       setCategoryData(merchandiseData);
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error.response);
     }
   }
 

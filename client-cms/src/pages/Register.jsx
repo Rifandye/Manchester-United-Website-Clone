@@ -1,6 +1,39 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
+
+  const [registerData, setRegisterData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    role: "Admin",
+  });
+
+  function handleInputLoginForm(event) {
+    const { name, value } = event.target;
+    setRegisterData({
+      ...registerData,
+      [name]: value,
+    });
+  }
+
+  const handleRegisterSubmit = async (response) => {
+    try {
+      const { data } = await axios({
+        method: "POST",
+        url: "http://localhost:3000/register",
+      });
+
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="bg-black">
       <form action="#" method="post"></form>
@@ -93,9 +126,7 @@ function Register() {
                 </div>
                 <div className="flex flex-wrap -1 mb-7">
                   <div className="w-full p-1">
-                    <a
-                      className="p-5 flex flex-wrap justify-center bg-gray-900 hover:bg-gray-900 bg-opacity-30 hover:bg-opacity-10 rounded-full transition duration-300"
-                    >
+                    <a className="p-5 flex flex-wrap justify-center bg-gray-900 hover:bg-gray-900 bg-opacity-30 hover:bg-opacity-10 rounded-full transition duration-300">
                       <div className="mr-4 inline-block">
                         <img
                           src="nightsable-assets/images/sign-in/google.svg"
