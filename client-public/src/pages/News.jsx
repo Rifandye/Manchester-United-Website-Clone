@@ -7,7 +7,7 @@ function News() {
     try {
       const response = await axios({
         method: "GET",
-        url: "http://localhost:3000/pub/news",
+        url: import.meta.env.VITE_BASE_URL + "/pub/news",
       });
 
       //   console.log(response.data);
