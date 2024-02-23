@@ -1,11 +1,37 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  redirect,
+} from "react-router-dom";
 import Home from "./pages/HomePage";
 import Layout from "./pages/LayoutPage";
 import Order from "./pages/Order";
 import Standing from "./pages/Standing";
 import News from "./pages/News";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
+  {
+    path: "/register",
+    element: <Register />,
+    loader: () => {
+      if (localStorage.getItem("access_token")) {
+        return redirect("/");
+      }
+      return null;
+    },
+  },
+  {
+    path: "/login",
+    element: <Login />,
+    loader: () => {
+      if (localStorage.getItem("access_token")) {
+        return redirect("/");
+      }
+      return null;
+    },
+  },
   {
     element: <Layout />,
     children: [
@@ -26,6 +52,13 @@ const router = createBrowserRouter([
         element: <News />,
       },
     ],
+
+    loader: () => {
+      if (!localStorage.getItem("access_token")) {
+        return redirect("/login");
+      }
+      return null;
+    },
   },
 ]);
 
