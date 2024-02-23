@@ -9,7 +9,7 @@ function Category() {
     try {
       const { data } = await axios({
         method: "GET",
-        url: "http://localhost:3000/categories",
+        url: import.meta.env.VITE_BASE_URL + "/categories",
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },

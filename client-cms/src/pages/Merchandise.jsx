@@ -9,7 +9,7 @@ function Merchandise() {
     try {
       const { data } = await axios({
         method: "GET",
-        url: "http://localhost:3000/merchandises",
+        url: import.meta.env.VITE_BASE_URL + "/merchandises",
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -30,7 +30,7 @@ function Merchandise() {
     try {
       const response = await axios({
         method: "DELETE",
-        url: `http://localhost:3000/merchandises/${id}`,
+        url: import.meta.env.VITE_BASE_URL + `/merchandises/${id}`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
