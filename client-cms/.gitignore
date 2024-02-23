@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 client_secret_569645514479-mmmij55tojuknn5nl4h239spdte9qr9s.apps.googleusercontent.com.json
+
+.env

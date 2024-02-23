@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  redirect,
+} from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Merchandise from "./pages/Merchandise";
@@ -7,7 +11,6 @@ import Category from "./pages/Category";
 import AddMerch from "./pages/AddMerchandise";
 import EditMerchandise from "./pages/EditMerchandise";
 import SeeDetail from "./pages/SeeDetailCategory";
-
 
 const router = createBrowserRouter([
   {
@@ -19,6 +22,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/",
     element: <Layout />,
     children: [
       {
@@ -42,6 +46,13 @@ const router = createBrowserRouter([
         element: <EditMerchandise />,
       },
     ],
+
+    loader: () => {
+      if (!localStorage.getItem("access_token")) {
+        return redirect("/login");
+      }
+      return null;
+    },
   },
 ]);
 

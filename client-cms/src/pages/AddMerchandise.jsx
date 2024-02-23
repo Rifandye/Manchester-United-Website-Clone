@@ -44,7 +44,7 @@ function AddMerch() {
     try {
       const response = await axios({
         method: "POST",
-        url: "http://localhost:3000/merchandises",
+        url: import.meta.env.VITE_BASE_URL + "/merchandises",
         data: merchInput,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -62,7 +62,7 @@ function AddMerch() {
     try {
       const { data } = await axios({
         method: "GET",
-        url: "http://localhost:3000/categories",
+        url: import.meta.env.VITE_BASE_URL + "/categories",
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },

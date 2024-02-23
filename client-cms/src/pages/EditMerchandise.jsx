@@ -20,7 +20,7 @@ function EditMerchandise() {
       try {
         const response = await axios({
           method: "GET",
-          url: `http://localhost:3000/merchandises/${id}`,
+          url: import.meta.env.VITE_BASE_URL + `/merchandises/${id}`,
           headers: {
             Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
@@ -49,7 +49,7 @@ function EditMerchandise() {
     try {
       const response = await axios({
         method: "PUT",
-        url: `http://localhost:3000/merchandises/${id}`,
+        url: import.meta.env.VITE_BASE_URL + `/merchandises/${id}`,
         data: editInput,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
