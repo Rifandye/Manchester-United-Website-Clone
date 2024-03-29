@@ -85,6 +85,7 @@ function Login() {
                 <h2>Email</h2>
                 <input type="text" name="" id="" />
                 <h2>Password</h2>
+                <h2>Nanti lanjutkan lagi </h2>
                 <input type="text" name="" id="" />
                 <button>Login</button>
               </form>
