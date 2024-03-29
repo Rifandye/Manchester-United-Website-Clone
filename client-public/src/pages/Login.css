@@ -1,0 +1,61 @@
+html,
+body {
+  background-color: rgba(27, 29, 34, 1);
+}
+
+.outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  height: 95%;
+  width: 90%;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-holder {
+  position: relative;
+  border: 5px solid white;
+  height: 95%;
+  width: 90%;
+}
+
+.image-holder {
+  position: relative;
+  height: 95%;
+  width: 90%;
+}
+
+.image-holder img {
+  height: 808px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.grid.form form {
+  display: grid;
+}
+
+p,
+h1,
+h2,
+h3 {
+  color: white;
+}
