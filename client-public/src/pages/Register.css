@@ -1,4 +1,4 @@
-.login-background {
+.register-background {
   background-color: rgba(27, 29, 34, 1);
 }
 
@@ -16,10 +16,11 @@
   width: 90%;
 }
 
-.login-container {
+.register-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .image-container {
@@ -28,10 +29,12 @@
   align-items: center;
 }
 
-.login-holder {
+.register-holder {
   position: relative;
   height: 95%;
   width: 90%;
+  margin-top: -50px;
+  height: 100%;
 }
 
 .image-holder {
@@ -52,4 +55,23 @@ h1,
 h2,
 h3 {
   color: white;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
 }
