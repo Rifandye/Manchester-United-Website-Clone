@@ -26,6 +26,12 @@ const errorHandler = (err, req, res, next) => {
     case "NotFound":
       res.status(404).json({ message: "Merchandise not found" });
       break;
+    case "FileIsRequired":
+      res.status(400).json({ message: "File Is Required" });
+      break;
+    case "CuisineToUpdateImage":
+      res.status(400).json({ message: "Cuisine Id Not Found" });
+      break;
     default:
       console.log(err);
       res.status(500).json({ message: "Internal Server Error" });

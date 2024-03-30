@@ -1,4 +1,11 @@
 const { Merchandise, Category, Catalogue } = require("../models/index");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 module.exports = class MerchController {
   static async postMerch(req, res, next) {
@@ -94,6 +101,30 @@ module.exports = class MerchController {
 
       res.status(200).json(merch);
     } catch (error) {
+      next(error);
+    }
+  }
+
+  static async uploadImgById(req, res, next) {
+    try {
+      const merchId = +req.params.id;
+      const merch = await Merchandise.findByPk(merchId);
+
+      if (!merch) throw { name: "MerchToUpdateImage" };
+
+      if (!req.file) throw { name: "FileIsRequired" };
+
+      const base64Image = req.file.buffer.toString("base64");
+      const base64URL = `data:${req.file.mimetype};base64,${base64Image}`;
+
+      const result = await cloudinary.uploader.upload(base64URL, {
+        public_id: req.file.originalname,
+      });
+
+      await merch.update({ imageUrl: result.secure_url });
+      res.json(merch);
+    } catch (error) {
+      console.log(error);
       next(error);
     }
   }

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import "./HomePage.css";
 
 function Home() {
   const location = useLocation();
@@ -17,7 +18,7 @@ function Home() {
     <>
       <section className="overflow-hidden">
         <div className="px-6 pt-10">
-          <div className="bg-black rounded-2xl py-6 pr-6 pl-6 lg:pl-24">
+          <div className="hero rounded-2xl py-6 pr-6 pl-6 lg:pl-24">
             <div className="flex flex-wrap -m-4">
               <div className="w-full lg:w-7/12 p-4">
                 <div className="py-18">
@@ -62,7 +63,7 @@ function Home() {
                     </a>
                     <Link
                       to="/news"
-                      className="bg-black rounded-full border border-gray-200 focus:ring-4 focus:ring-gray-200 text-white text-sm font-semibold px-8 h-12 inline-flex items-center transition duration-200"
+                      className="rounded-full border border-gray-200 focus:ring-4 focus:ring-gray-200 text-white text-sm font-semibold px-8 h-12 inline-flex items-center transition duration-200"
                     >
                       Explore More
                     </Link>
@@ -105,7 +106,7 @@ function Home() {
       </section>
       <section className="py-24">
         <div className="container mx-auto px-4">
-          <h1 className="font-heading uppercase text-center text-7xl md:text-9xl mb-14">
+          <h1 className="heading-gallery font-heading uppercase text-center text-7xl md:text-9xl mb-14">
             new united collection
           </h1>
           <div className="flex flex-wrap -m-4">

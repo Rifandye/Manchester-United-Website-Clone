@@ -11,6 +11,7 @@ import Category from "./pages/Category";
 import AddMerch from "./pages/AddMerchandise";
 import EditMerchandise from "./pages/EditMerchandise";
 import SeeDetail from "./pages/SeeDetailCategory";
+import UploadImage from "./pages/UploudImage";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/merchandises/:id",
         element: <EditMerchandise />,
+      },
+      {
+        path: "/merchandises/:id/imgUrl",
+        element: <UploadImage />,
       },
     ],
 
