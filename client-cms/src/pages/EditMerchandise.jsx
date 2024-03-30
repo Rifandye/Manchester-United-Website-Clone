@@ -62,6 +62,10 @@ function EditMerchandise() {
     }
   }
 
+  function handleButton() {
+    navigate(`/merchandises/${id}/imgUrl`);
+  }
+
   return (
     <div className="w-full max-w-lg mx-auto">
       <h2 className="text-center text-2xl font-bold mb-6 mt-6">
@@ -136,12 +140,22 @@ function EditMerchandise() {
             onChange={handleInputDataForm}
           />
         </div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Submit
-        </button>
+        <div className="mb-4 flex justify-between">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={() => {
+              handleButton(editInput.id);
+            }}
+          >
+            Upload Image
+          </button>
+        </div>
       </form>
     </div>
   );
