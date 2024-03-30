@@ -28,85 +28,92 @@ function Standing() {
   }, []);
 
   return (
-    <div className="flex justify-center mt-8">
+    <div className="flex justify-center mt-8 mb-20">
       <div className="w-full lg:w-3/4 xl:w-2/3">
         <h2 className="text-2xl font-bold mb-4 text-center">
           Premier League Standings
         </h2>
         {standingData.length > 0 ? (
-          <table className="w-full border-collapse border border-gray-400 mb-8">
-            <thead>
-              <tr>
-                <th className="border border-gray-400 px-4 py-2">Rank</th>
-                <th className="border border-gray-400 px-4 py-2">Team</th>
-                <th className="border border-gray-400 px-4 py-2">Logo</th>
-                <th className="border border-gray-400 px-4 py-2">Points</th>
-                <th className="border border-gray-400 px-4 py-2">Played</th>
-                <th className="border border-gray-400 px-4 py-2">Wins</th>
-                <th className="border border-gray-400 px-4 py-2">Draws</th>
-                <th className="border border-gray-400 px-4 py-2">Losses</th>
-                <th className="border border-gray-400 px-4 py-2">Goals For</th>
-                <th className="border border-gray-400 px-4 py-2">
-                  Goals Against
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {standingData.map((standing, index) => (
-                <tr key={index}>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {standing.rank}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    <div className="flex items-center">
+          <div className="overflow-x-auto">
+            <table className="w-full table-fixed border-collapse border border-gray-300">
+              <thead>
+                <tr className="bg-gray-200">
+                  <th className="w-1/12 p-3 border border-gray-300">Rank</th>
+                  <th className="w-3/12 p-3 border border-gray-300">Team</th>
+                  <th className="w-2/12 p-3 border border-gray-300">Logo</th>
+                  <th className="w-1/12 p-3 border border-gray-300">Points</th>
+                  <th className="w-1/12 p-3 border border-gray-300">Played</th>
+                  <th className="w-1/12 p-3 border border-gray-300">Wins</th>
+                  <th className="w-1/12 p-3 border border-gray-300">Draws</th>
+                  <th className="w-1/12 p-3 border border-gray-300">Losses</th>
+                  <th className="w-1/12 p-3 border border-gray-300">
+                    Goals For
+                  </th>
+                  <th className="w-1/12 p-3 border border-gray-300">
+                    Goals Against
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {standingData.map((standing, index) => (
+                  <tr
+                    key={index}
+                    className={index % 2 === 0 ? "bg-gray-100" : ""}
+                  >
+                    <td className="p-3 border border-gray-300">
+                      {standing.rank}
+                    </td>
+                    <td className="p-3 border border-gray-300">
+                      <div className="flex items-center">
+                        {standing.team && (
+                          <img
+                            src={standing.team.logo}
+                            alt={standing.team.name}
+                            className="w-6 h-6 mr-2 rounded-full"
+                          />
+                        )}
+                        {standing.team && standing.team.name}
+                      </div>
+                    </td>
+                    <td className="p-3 border border-gray-300">
                       {standing.team && (
                         <img
                           src={standing.team.logo}
                           alt={standing.team.name}
-                          className="w-6 h-6 mr-2"
+                          className="h-8 rounded-lg"
                         />
                       )}
-                      {standing.team && standing.team.name}
-                    </div>
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {standing.team && (
-                      <img
-                        src={standing.team.logo}
-                        alt={standing.team.name}
-                        className="w-8 h-8"
-                      />
-                    )}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {standing.points}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {standing.all && standing.all.played}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {standing.all && standing.all.win}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {standing.all && standing.all.draw}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {standing.all && standing.all.lose}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {standing.all &&
-                      standing.all.goals &&
-                      standing.all.goals.for}
-                  </td>
-                  <td className="border border-gray-400 px-4 py-2">
-                    {standing.all &&
-                      standing.all.goals &&
-                      standing.all.goals.against}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    </td>
+                    <td className="p-3 border border-gray-300 font-semibold">
+                      {standing.points}
+                    </td>
+                    <td className="p-3 border border-gray-300">
+                      {standing.all && standing.all.played}
+                    </td>
+                    <td className="p-3 border border-gray-300">
+                      {standing.all && standing.all.win}
+                    </td>
+                    <td className="p-3 border border-gray-300">
+                      {standing.all && standing.all.draw}
+                    </td>
+                    <td className="p-3 border border-gray-300">
+                      {standing.all && standing.all.lose}
+                    </td>
+                    <td className="p-3 border border-gray-300">
+                      {standing.all &&
+                        standing.all.goals &&
+                        standing.all.goals.for}
+                    </td>
+                    <td className="p-3 border border-gray-300">
+                      {standing.all &&
+                        standing.all.goals &&
+                        standing.all.goals.against}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
           <p>Loading...</p>
         )}
