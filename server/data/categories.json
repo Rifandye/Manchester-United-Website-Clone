@@ -1,44 +1,72 @@
 [
   {
-    "name": "Men's Home Team Jersey"
+    "name": "Men's Home Team Jersey",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Men's Away Team Jersey"
+    "name": "Men's Away Team Jersey",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Men's Team Cap"
+    "name": "Men's Team Cap",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Women's Home Team Jersey"
+    "name": "Women's Home Team Jersey",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Women's Away Team Jersey"
+    "name": "Women's Away Team Jersey",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Women's Team Cap"
+    "name": "Women's Team Cap",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Official Match Football"
+    "name": "Official Match Football",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Practice Football"
+    "name": "Practice Football",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Team Training Kit"
+    "name": "Team Training Kit",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Training Shorts"
+    "name": "Training Shorts",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Water Bottle"
+    "name": "Water Bottle",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Stadium Fan Scarf"
+    "name": "Stadium Fan Scarf",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Sporty Socks"
+    "name": "Sporty Socks",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   },
   {
-    "name": "Fan T-shirt"
+    "name": "Fan T-shirt",
+    "createdAt": "2024-03-30T12:00:00Z",
+    "updatedAt": "2024-03-30T12:00:00Z"
   }
 ]
