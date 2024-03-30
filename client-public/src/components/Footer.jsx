@@ -1,9 +1,9 @@
 function Footer() {
   return (
     <>
-      <section className="py-16 bg-red-800">
+      <section className="py-8 bg-red-800">
         <div className="container mx-auto px-4">
-          <div className="pb-10 border-b border-gray-50 mb-10">
+          <div className="pb-4 border-b border-gray-50 mb-10">
             <div className="flex justify-center mb-12">
               <a href="#" className="inline-block">
                 <img className="h-12" src="/mulogo.png" alt="" />
