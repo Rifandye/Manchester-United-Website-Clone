@@ -22,7 +22,6 @@ function Login() {
           "google-token": response.credential,
         },
       });
-
       localStorage.setItem("access_token", data.access_token);
 
       console.log(data);
@@ -126,7 +125,7 @@ function Login() {
                       </div>
                       <button
                         type="submit"
-                        className="block mx-auto mt-8 mb-6 px-14 py-3 text-center font-medium tracking-2xl border-2 border-red-800 bg-red-800 hover:bg-red-800 text-black focus:ring-4 focus:ring-red-800 focus:ring-opacity-40 rounded-full transition duration-300"
+                        className="block mx-auto mt-8 mb-6 px-14 py-3 text-center font-medium tracking-2xl border-2 bg-red-800 hover:bg-red-700 text-black focus:ring-4 focus:ring-red-800 focus:ring-opacity-40 rounded-full transition duration-300"
                       >
                         Log in
                       </button>
@@ -166,7 +165,7 @@ function Login() {
         </div>
         <div className="image-container">
           <div className="image-holder">
-            <img src="/banner6.jpeg" alt="casemiro photo" />
+            <img src="/banner6.jpeg" alt="banner" />
           </div>
         </div>
       </div>

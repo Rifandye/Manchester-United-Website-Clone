@@ -120,14 +120,14 @@ function Register() {
                       </div>
                       <button
                         type="submit"
-                        className="block mx-auto mt-8 mb-6 px-14 py-3 text-center font-medium tracking-2xl border-2 border-red-800 bg-red-800 hover:bg-red-800 text-black focus:ring-4 focus:ring-red-800 focus:ring-opacity-40 rounded-full transition duration-300"
+                        className="block mx-auto mt-8 mb-6 px-14 py-3 text-center font-medium tracking-2xl border-2 border-red-800 bg-red-800 hover:bg-red-700 text-black focus:ring-4 focus:ring-red-800 focus:ring-opacity-40 rounded-full transition duration-300"
                       >
                         Register
                       </button>
                     </form>
                   </div>
                 </div>
-              </div>
+              </div>  
             </div>
           </div>
         </div>
