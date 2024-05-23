@@ -2,8 +2,24 @@ const { comparePass } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const { User } = require("../models/index");
 const { OAuth2Client } = require("google-auth-library");
+const { google } = require("googleapis");
 
-const oauth2client = new OAuth2Client();
+const oauth2Client = new google.auth.OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  "http://localhost:3000/auth/google/callback"
+);
+
+const scopes = [
+  "https://www.googleapis.com/auth/userinfo.email",
+  "https://www.googleapis.com/auth/userinfo.profile",
+];
+
+const authorizationUrl = oauth2Client.generateAuthUrl({
+  access_type: "offline",
+  scope: scopes,
+  included_granted_scopes: true,
+});
 
 module.exports = class AuthController {
   static async createUser(req, res, next) {
@@ -39,43 +55,57 @@ module.exports = class AuthController {
 
       const access_token = signToken({ id: user.id });
 
-      const role = user.role;
-
-      res.status(200).json({ access_token, role });
+      res.status(200).json({ access_token });
     } catch (error) {
       next(error);
     }
   }
 
-  static async googleLogin(req, res, next) {
-    console.log(req.headers);
+  static googleLogin(req, res, next) {
+    res.redirect(authorizationUrl);
+  }
+
+  static async googleCallback(req, res, next) {
     try {
-      const ticket = await oauth2client.verifyIdToken({
-        idToken: req.headers["google-token"],
-        audience: process.env.GOOGLE_KEY,
+      const { code } = req.query;
+
+      const { tokens } = await oauth2Client.getToken(code);
+
+      oauth2Client.setCredentials(tokens);
+
+      const oauth2 = google.oauth2({
+        auth: oauth2Client,
+        version: "v2",
       });
 
-      const payload = ticket.getPayload();
-      console.log(payload);
+      const { data } = await oauth2.userinfo.get();
+
+      if (!data) {
+        return res.json({
+          data: data,
+        });
+      }
 
       let user = await User.findOne({
         where: {
-          email: payload.email,
+          email: data.email,
         },
       });
 
       if (!user) {
         user = await User.create({
-          firstname: payload.given_name,
-          lastname: payload.family_name,
-          email: payload.email,
-          password: "dummy-password-" + Date.now() + Math.random(),
+          firstname: data.given_name,
+          lastname: data.family_name,
+          email: data.email,
+          password: "dummy-password" + Math.random(),
         });
       }
 
       const access_token = signToken({ id: user.id });
 
-      res.status(201).json({ access_token });
+      res
+        .status(200)
+        .json({ message: "Google login successful", user, access_token });
     } catch (error) {
       next(error);
     }
