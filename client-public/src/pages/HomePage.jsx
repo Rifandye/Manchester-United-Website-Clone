@@ -42,8 +42,8 @@ function Home() {
       </section>
 
       {/* Featured Secttion */}
-      <section className="flex flex-col justify-center items-center w-[1120px] mb-[185px]">
-        <div className="flex flex-col justify-center items-center rounded-[20px] w-[323px] h-[122px] mb-[43px]">
+      <section className="flex flex-col justify-center items-center w-[1120px] mb-[140px]">
+        <div className="flex flex-col justify-center items-center w-[323px] h-[122px] mb-[43px]">
           <div className="font-[600px] text-[50px] leading-[60.51px] text-center">
             NEW <span className="text-red-800">RED</span> <br /> COLLECTION
           </div>
@@ -72,6 +72,26 @@ function Home() {
           </div>
           <div className="w-[265px] h-[265px] rounded-[20px]">
             <img src="Rectangle9.svg" alt="" />
+          </div>
+        </div>
+      </section>
+
+      {/* News Section */}
+      <section className="flex flex-col justify-center items-center bg-red-400 w-[1120px] h-[688px] mb-[140px]">
+        <div className="flex flex-col justify-center items-center rounded-[20px] w-[323px] h-[122px] ">
+          <div className="font-[600px] text-[50px] leading-[60.51px] text-center bg-red-300">
+            NEW <span className="text-red-800">RED</span> <br /> COLLECTION
+          </div>
+          <div className="flex flex-rows justify-center items-center gap-[29px] bg-red-800 h-[518px] w-[1120px]">
+            <div className="bg-red-300 h-[410px] w-[354px]">
+              This is the card
+            </div>
+            <div className="bg-red-300 h-[410px] w-[354px]">
+              This is the card
+            </div>
+            <div className="bg-red-300 h-[410px] w-[354px]">
+              This is the card
+            </div>
           </div>
         </div>
       </section>
