@@ -13,11 +13,12 @@ function Login() {
     password: "",
   });
 
+  /*
   const handleCredentialResponse = async (response) => {
     try {
       const { data } = await axios({
         method: "POST",
-        url: import.meta.env.VITE_BASE_URL + "/google-login",
+        url: import.meta.env.VITE_BASE_URL + "/auth/google",
         headers: {
           "google-token": response.credential,
         },
@@ -34,17 +35,18 @@ function Login() {
   useEffect(() => {
     google.accounts.id.initialize({
       client_id:
-        "569645514479-mmmij55tojuknn5nl4h239spdte9qr9s.apps.googleusercontent.com",
+        "140039142524-gb25mj0c4bdplqi54gupm0hdd5sae81h.apps.googleusercontent.com",
       callback: handleCredentialResponse,
     });
     //ini button
     google.accounts.id.renderButton(
-      document.getElementById("google-button"),
+      document.getElementById("buttonDiv"),
       { theme: "outline", size: "large" } // customization attributes
     );
     //ini one tap
     google.accounts.id.prompt(); // also display the One Tap dialog
   }, []);
+*/
 
   function handleInputLoginForm(event) {
     const { name, value } = event.target;
@@ -148,13 +150,14 @@ function Login() {
                       </div>
                     </div>
                     <div className="flex flex-wrap">
-                      <div className="w-full">
-                        <button
-                          id="google-button"
-                          className="text-sm text-black font-medium"
+                      <div className="w-full ">
+                        {/* <button
+                          id="buttonDiv"
+                          className="g-signin2"
+                          data-onsuccess="onSignIn"
                         >
                           Sign in with Google
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>

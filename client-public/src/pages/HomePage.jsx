@@ -3,17 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import "./HomePage.css";
 
 function Home() {
-  const location = useLocation();
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const accessToken = params.get("token");
-
-    if (accessToken) {
-      localStorage.setItem("access_token", accessToken);
-    }
-  }, [location]);
-
   return (
     <main className="flex flex-col justify-center items-center">
       {/* Hero Section */}
@@ -77,7 +66,7 @@ function Home() {
       </section>
 
       {/* News Section */}
-      <section className="flex flex-col justify-center items-center bg-red-400 w-[1120px] h-[688px] mb-[140px]">
+      {/* <section className="flex flex-col justify-center items-center bg-red-400 w-[1120px] h-[688px] mb-[140px]">
         <div className="flex flex-col justify-center items-center rounded-[20px] w-[323px] h-[122px] ">
           <div className="font-[600px] text-[50px] leading-[60.51px] text-center bg-red-300">
             NEW <span className="text-red-800">RED</span> <br /> COLLECTION
@@ -94,7 +83,7 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }
