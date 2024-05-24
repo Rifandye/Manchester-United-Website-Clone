@@ -4,87 +4,63 @@ import "./HomePage.css";
 
 function Home() {
   return (
-    <main className="flex flex-col justify-center items-center">
-      {/* Hero Section */}
-      <section className="grid grid-cols-2  bg-[#1B1D22] w-[1120px] h-[588px] mt-[125px] mb-[95px] rounded-[20px]">
-        <div className="flex flex-col">
-          <div className="w-[462px] h-[183] leading-[60.51px] font-inter text-white text-[50px] font-[600px] mt-[47px] ml-[61px] mb-[45px]">
-            Embrace <br />
-            The Spirit of <br />
-            Manchester United
+    <>
+      <section className="font-inter" aria-label="Hero Section">
+        <div className="hero h-[700px] text-white grid grid-cols-[1fr_1fr] rounded-bl-2xl rounded-br-2xl">
+          <div className="flex flex-col gap-10">
+            <div className="ml-[78px] mt-[56px] text-[50px] font-semibold whitespace-pre-line">
+              Embrace
+              <br />
+              The Spirit of
+              <br />
+              Manchester United
+            </div>
+            <div className="ml-[78px] text-[20px] font-semibold whitespace-pre-line">
+              Step into Legacy: A Journey Through the Glorious
+              <br />
+              and Unmatched Passion of the Red Devils
+            </div>
+            <div className="ml-[78px]">
+              <button className="bg-[#D99A20] h-[50px] w-[200px] rounded-[20px] text-[#1B1D22] font-semibold">
+                Explore More
+              </button>
+            </div>
           </div>
-          <div className="font-inter leading-[24.2px] w-[481px] h-[48px] text-white text-[20px] font-[600px] ml-[61px]">
-            Step into Legacy: A Journey Through the Glorious <br />
-            and Unmatched Passion of the Red Devils
-          </div>
-          <div className="ml-[61px]">
-            <button className="bg-white px-[15px] py-[20px] rounded-[20px] font-inter text-[20px] font-[600px] mt-[155px]">
-              Explore More
-            </button>
-          </div>
-        </div>
-        <div className="flex items-center justify-center ">
-          <div className="w-[434px] h-[495px] rounded-[20px] bg-red-400">
-            <img src="Banner.svg" alt="" />
+          <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center h-[560px] w-[560px]">
+              <img src="herobanner.svg" alt="" />
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Featured Secttion */}
-      <section className="flex flex-col justify-center items-center w-[1120px] mb-[140px]">
-        <div className="flex flex-col justify-center items-center w-[323px] h-[122px] mb-[43px]">
-          <div className="font-[600px] text-[50px] leading-[60.51px] text-center">
-            NEW <span className="text-red-800">RED</span> <br /> COLLECTION
+      <section>
+        <div className="h-[738px] mt-[104px] mb-7 grid grid-rows-[auto_1fr]">
+          <div className="flex justify-center items-center">
+            <div className="text-[#1B1D22] text-[50px] font-semibold text-center w-[357.61px] h-[138.43px]">
+              NEW <span className="text-[#991B1B]">RED</span>
+              <br />
+              COLLECTION
+            </div>
           </div>
-        </div>
-        <div className="h-[570px] w-[1120px] grid grid-cols-4 gap-5">
-          <div className="w-[265px] h-[265px] rounded-[20px]">
-            <img src="Rectangle2.svg" alt="" />
-          </div>
-          <div className="w-[265px] h-[265px] rounded-[20px]">
-            <img src="Rectangle3.svg" alt="" />
-          </div>
-          <div className="w-[265px] h-[265px] rounded-[20px]">
-            <img src="Rectangle4.svg" alt="" />
-          </div>
-          <div className="w-[265px] h-[265px] rounded-[20px]">
-            <img src="Rectangle5.svg" alt="" />
-          </div>
-          <div className="w-[265px] h-[265px] rounded-[20px]">
-            <img src="Rectangle6.svg" alt="" />
-          </div>
-          <div className="w-[265px] h-[265px] rounded-[20px]">
-            <img src="Rectangle7.svg" alt="" />
-          </div>
-          <div className="w-[265px] h-[265px] rounded-[20px]">
-            <img src="Rectangle8.svg" alt="" />
-          </div>
-          <div className="w-[265px] h-[265px] rounded-[20px]">
-            <img src="Rectangle9.svg" alt="" />
+          <div className="flex justify-center items-center mt-4">
+            <div className="w-[1240px] h-[600px] relative">
+              <img
+                className="w-[610px] h-[600px] left-0 top-0 absolute"
+                src="collection1.svg"
+              />
+              <img
+                className="w-[610px] h-[290px] left-[630px] top-0 absolute"
+                src="collection2.svg"
+              />
+              <img
+                className="w-[610px] h-[290px] left-[630px] top-[310px] absolute"
+                src="collection3.svg"
+              />
+            </div>
           </div>
         </div>
       </section>
-
-      {/* News Section */}
-      {/* <section className="flex flex-col justify-center items-center bg-red-400 w-[1120px] h-[688px] mb-[140px]">
-        <div className="flex flex-col justify-center items-center rounded-[20px] w-[323px] h-[122px] ">
-          <div className="font-[600px] text-[50px] leading-[60.51px] text-center bg-red-300">
-            NEW <span className="text-red-800">RED</span> <br /> COLLECTION
-          </div>
-          <div className="flex flex-rows justify-center items-center gap-[29px] bg-red-800 h-[518px] w-[1120px]">
-            <div className="bg-red-300 h-[410px] w-[354px]">
-              This is the card
-            </div>
-            <div className="bg-red-300 h-[410px] w-[354px]">
-              This is the card
-            </div>
-            <div className="bg-red-300 h-[410px] w-[354px]">
-              This is the card
-            </div>
-          </div>
-        </div>
-      </section> */}
-    </main>
+    </>
   );
 }
 

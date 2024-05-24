@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import "./Navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -15,33 +16,35 @@ function Navbar() {
   }
 
   return (
-    <nav>
-      <div className="flex justify-between items-center h-[100px] bg-red-800 rounded-bl-[20px] rounded-br-[20px]">
-        <div>
-          <button onClick={() => handleNavigation("/")}>
-            <img className="ml-[160px]" src="mulogo1.svg" alt="Mu logo" />
+    <nav className="navbar-gradient h-[100px] text-[15px] font-inter font-semibold">
+      <div className="grid grid-cols-[1fr_2fr_1fr] h-full">
+        <div className="flex items-center justify-center">
+          <button>
+            <img
+              src="mulogo.png"
+              alt="mu logo"
+              className="h-full max-h-[33px] w-auto"
+            />
           </button>
         </div>
-        <div>
-          <ul className="flex justify-between gap-[34px] font-[600] text-white font-inter">
-            <li>
-              <button onClick={() => handleNavigation("/order")}>Shops</button>
-            </li>
-            <li>
-              <button onClick={() => handleNavigation("/standing")}>
-                League Standing
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleNavigation("/news")}>News</button>
-            </li>
-            <li>
-              <button>About</button>
-            </li>
-          </ul>
+        <div className="flex justify-center items-center gap-10 text-white">
+          <div>
+            <button>Shop</button>
+          </div>
+          <div>
+            <button>League Standing</button>
+          </div>
+          <div>
+            <button>News</button>
+          </div>
+          <div>
+            <button>About</button>
+          </div>
         </div>
-        <div>
-          <img className="mr-[160px]" src="red-devils1.svg" alt="Red Devils" />
+        <div className="flex items-center justify-center">
+          <button>
+            <img src="red-devils1.svg" alt="Red Devils Logo" />
+          </button>
         </div>
       </div>
     </nav>
