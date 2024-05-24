@@ -1,13 +1,19 @@
+import "./Footer.css";
+
 function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-center h-[130px] bg-red-800 rounded-tl-[20px] rounded-tr-[20px]">
-      <div>
-        <img src="red-devils2.svg" alt="Red Devils" />
-      </div>
-      <div className="flex gap-[24px] mt-[12px]">
-        <img src="linkedin.svg" alt="LinkedIn" />
-        <img src="github.svg" alt="Github" />
-        <img src="instagram.svg" alt="Instagram" />
+    <footer className="footer-gradient h-[130px] mt-[200px] flex flex-col items-center justify-center">
+      <img src="red-devils2.svg" alt="Red Devils" className="mb-4" />
+      <div className="flex gap-3">
+        <a href="https://linkedin.com/in/rifandye">
+          <img className="svg-icon" src="linkedin.svg" alt="LinkedIn" />
+        </a>
+        <a href="https://github.com/Rifandye">
+          <img className="svg-icon" src="github.svg" alt="GitHub" />
+        </a>
+        <a href="https://www.instagram.com/rifandye/">
+          <img src="instagram.svg" alt="Instagram" />
+        </a>
       </div>
     </footer>
   );
