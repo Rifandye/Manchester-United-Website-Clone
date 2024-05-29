@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { tambah } from "../store/counterSlice";
+import { increment } from "../store/counterSlice";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Order() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const cartCount = useSelector((state) => state.counter.count);
 
   const [merchandiseData, setMerchandiseData] = useState([]);
+
   async function fethData() {
     try {
       const response = await axios({
@@ -27,8 +31,12 @@ function Order() {
   }, []);
 
   const handleAddToCart = () => {
-    dispatch(tambah());
+    dispatch(increment());
   };
+
+  function handleNavigation(path) {
+    navigate(path);
+  }
 
   return (
     <>
@@ -41,7 +49,7 @@ function Order() {
           />
         </div>
         <section className="mt-10">
-          <div className="grid grid-cols-4 gap-6 mx-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-24">
             {merchandiseData.map((item) => (
               <div
                 key={item.id}
@@ -56,20 +64,16 @@ function Order() {
                 </div>
                 <div className="flex flex-col gap-4 mt-[20px] ml-[20px] text-[#1B1D22] font-inter font-semibold">
                   <div className="text-[15px] h-10 ">{item.name}</div>
-                  <div className="w-[65px] h-[20px] bg-stone-300 rounded-[20px] text-[9px] font-semibold flex items-center justify-center">
-                    {item.category}
+                  <div className="font-semibold text-lg mt-2">
+                    RP.{item.price}
                   </div>
-                  <div className="font-semibold text-lg">RP.{item.price}</div>
                 </div>
                 <div className="flex justify-center items-center gap-3 mt-5">
                   <button
                     className="bg-[#991b1b] text-white px-4 py-2 rounded-full flex items-center gap-2"
                     onClick={() => handleAddToCart(item.id)}
                   >
-                    <FaShoppingCart /> Buy
-                  </button>
-                  <button className="bg-[#991b1b] text-white px-4 py-2 rounded-full flex items-center gap-2">
-                    <FaHeart /> Wishlist
+                    <FaShoppingCart /> Add To Cart
                   </button>
                 </div>
               </div>
@@ -78,7 +82,17 @@ function Order() {
         </section>
       </section>
       <div className="fixed bottom-8 right-8">
-        <FaShoppingCart className="text-3xl text-[#1B1D22] cursor-pointer" />
+        <div className="relative">
+          <FaShoppingCart
+            className="text-3xl text-[#1B1D22] cursor-pointer"
+            onClick={() => handleNavigation("/cart")}
+          />
+          {cartCount > 0 && (
+            <span className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+              {cartCount}
+            </span>
+          )}
+        </div>
       </div>
     </>
   );

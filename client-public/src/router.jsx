@@ -10,6 +10,7 @@ import Standing from "./pages/Standing";
 import News from "./pages/News";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Cart from "./pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-      }, 
+      },
       {
         path: "/order",
         element: <Order />,
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/news",
         element: <News />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
 
