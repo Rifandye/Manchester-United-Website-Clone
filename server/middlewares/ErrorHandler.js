@@ -4,33 +4,26 @@ const errorHandler = (err, req, res, next) => {
     case "SequelizeUniqueConstraintError":
       res.status(400).json({ message: err.errors[0].message });
       break;
-    case "EmailIsRequired":
-      res.status(400).json({ message: "Email cannot empty" });
+    case "FirstNameRequired":
+      res.status(400).json({ message: "First Name Required" });
       break;
-    case "PasswordIsRequired":
-      res.status(400).json({ message: "Password cannot empty" });
+    case "LastNameRequired":
+      res.status(400).json({ message: "Last Name Required" });
       break;
-    case "EmailNotRegistered":
-      res.status(400).json({ message: "Email/Invalid is invalid" });
+    case "EmailRequired":
+      res.status(400).json({ message: "Email Required" });
       break;
-    case "CategoryNotFound":
-      res.status(404).json({ message: "Category not Not Found" });
+    case "PasswordRequired":
+      res.status(400).json({ message: "Password Required" });
       break;
-    case "InvalidToken":
-    case "JsonWebTokenError":
-      res.status(401).json({ message: "Invalid Token" });
+    case "InvalidLoginData":
+      res.status(400).json({ message: "Invalid Email/Password" });
       break;
-    case "Forbidden":
-      res.status(401).json({ message: "Only Admin can do this!" });
+    case "InvalidMerchId":
+      res.status(404).json({ message: "Merchandise Not Found" });
       break;
-    case "NotFound":
-      res.status(404).json({ message: "Merchandise not found" });
-      break;
-    case "FileIsRequired":
-      res.status(400).json({ message: "File Is Required" });
-      break;
-    case "CuisineToUpdateImage":
-      res.status(400).json({ message: "Cuisine Id Not Found" });
+    case "OrderNotFound":
+      res.status(404).json({ message: "Order Not Found" });
       break;
     default:
       console.log(err);

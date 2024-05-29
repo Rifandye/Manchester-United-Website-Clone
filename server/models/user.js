@@ -1,6 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
-const { hashPass } = require("../helpers/bcrypt");
+const { hashPass } = require("../utils/bcrypt");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -10,49 +10,47 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasMany(models.Order);
+      User.hasMany(models.Cart);
     }
   }
   User.init(
     {
-      firstname: {
+      firstName: {
         allowNull: false,
         type: DataTypes.STRING,
         validate: {
-          notNull: {
-            msg: "First Name is required",
-          },
           notEmpty: {
-            msg: "First Name is required",
+            msg: "First Name Is Required",
+          },
+          notNull: {
+            msg: "First Name Is Required",
           },
         },
       },
-      lastname: {
+      lastName: {
         allowNull: false,
         type: DataTypes.STRING,
         validate: {
-          notNull: {
-            msg: "Last Name is required",
-          },
           notEmpty: {
-            msg: "Last Name is required",
+            msg: "Last Name Is Required",
+          },
+          notNull: {
+            msg: "Last Name Is Required",
           },
         },
       },
       email: {
         allowNull: false,
-        unique: {
-          msg: "Email already taken",
-        },
         type: DataTypes.STRING,
         validate: {
-          notNull: {
-            msg: "Email is required",
-          },
           notEmpty: {
-            msg: "Email is required",
+            msg: "Email Is Required",
+          },
+          notNull: {
+            msg: "Email Is Required",
           },
           isEmail: {
-            msg: "Enter a valid email address",
+            msg: "Invalid Email Format",
           },
         },
       },
@@ -60,16 +58,25 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
         validate: {
-          notNull: {
-            msg: "Password is required",
-          },
           notEmpty: {
-            msg: "Password is required",
+            msg: "Password Is Required",
+          },
+          notNull: {
+            msg: "Password Is Required",
           },
         },
       },
       role: {
+        allowNull: false,
         type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Role Is Required",
+          },
+          notNull: {
+            msg: "Role Is Required",
+          },
+        },
         defaultValue: "Fans",
       },
     },
