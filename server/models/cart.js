@@ -1,35 +1,39 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Category extends Model {
+  class Cart extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Category.hasMany(models.Catalogue);
+      Cart.belongsTo(models.User);
+      Cart.belongsTo(models.Merchandise);
     }
   }
-  Category.init(
+  Cart.init(
     {
-      name: {
+      paidStatus: {
         allowNull: false,
         type: DataTypes.STRING,
         validate: {
-          notNull: {
-            msg: "Name is required",
-          },
           notEmpty: {
-            msg: "Name is required",
+            msg: "Paid Status Is Required",
+          },
+          notNull: {
+            msg: "Paid Status Is Required",
           },
         },
+        defaultValue: "Pending",
       },
+      UserId: DataTypes.INTEGER,
+      MerchandiseId: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: "Category",
+      modelName: "Cart",
     }
   );
-  return Category;
+  return Cart;
 };

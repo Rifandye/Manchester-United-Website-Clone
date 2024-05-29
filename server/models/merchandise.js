@@ -8,60 +8,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Merchandise.hasMany(models.Order);
-      Merchandise.hasMany(models.Catalogue);
+      Merchandise.hasMany(models.Cart);
     }
   }
   Merchandise.init(
     {
-      name: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        validate: {
-          notNull: {
-            msg: "Name is required",
-          },
-          notEmpty: {
-            msg: "Name is required",
-          },
-        },
-      },
-      description: {
-        allowNull: false,
-        type: DataTypes.TEXT,
-        validate: {
-          notNull: {
-            msg: "Description is required",
-          },
-          notEmpty: {
-            msg: "Description is required",
-          },
-        },
-      },
-      imageUrl: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        validate: {
-          notNull: {
-            msg: "Image is required",
-          },
-          notEmpty: {
-            msg: "Image is required",
-          },
-        },
-      },
-      price: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        validate: {
-          notNull: {
-            msg: "Price is required",
-          },
-          notEmpty: {
-            msg: "Price is required",
-          },
-        },
-      },
+      name: DataTypes.STRING,
+      description: DataTypes.STRING,
+      imageUrl: DataTypes.STRING,
+      price: DataTypes.INTEGER,
     },
     {
       sequelize,
