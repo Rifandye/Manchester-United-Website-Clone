@@ -62,7 +62,7 @@ function Login() {
     try {
       const response = await axios({
         method: "POST",
-        url: import.meta.env.VITE_BASE_URL + "/login",
+        url: "http://localhost:3000/login",
         data: loginInput,
       });
 

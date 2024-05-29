@@ -6,9 +6,6 @@ import Sidebar from "./Sidebar";
 
 function Navbar() {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const isOrderRoute = location.pathname === "/order";
 
   function handleNavigation(path) {
     navigate(path);

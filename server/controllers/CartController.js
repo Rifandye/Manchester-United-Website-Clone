@@ -92,7 +92,7 @@ module.exports = class CartController {
         UserId: user.id,
       });
 
-      res.status(201).json({ message: "Order Created", transaction });
+      res.status(201).json({ message: "Order Created", transaction, orderId });
     } catch (error) {
       next(error);
     }
