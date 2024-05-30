@@ -70,7 +70,7 @@ function Order() {
                 </div>
                 <div className="flex justify-center items-center gap-3 mt-5">
                   <button
-                    className="bg-[#991b1b] text-white px-4 py-2 rounded-full flex items-center gap-2"
+                    className="bg-[#1B1D22] text-white px-4 py-2 rounded-full flex items-center gap-2"
                     onClick={() => handleAddToCart(item.id)}
                   >
                     <FaShoppingCart /> Add To Cart

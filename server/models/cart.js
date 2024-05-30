@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         defaultValue: "Pending",
       },
+      paidDate: DataTypes.DATE,
       UserId: DataTypes.INTEGER,
       MerchandiseId: DataTypes.INTEGER,
     },

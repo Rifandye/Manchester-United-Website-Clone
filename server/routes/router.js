@@ -3,7 +3,7 @@ const router = express.Router();
 const AuthRouter = require("./AuthRouter");
 const MerchandiseRouter = require("./MerchandiseRouter");
 const PublicRouter = require("./PublicRouter");
-const UserRouter = require("./CartRouter");
+const UserRouter = require("./UserRouter");
 const { authentication } = require("../middlewares/Authentication");
 
 router.use("/", AuthRouter);

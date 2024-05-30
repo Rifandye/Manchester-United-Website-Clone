@@ -103,15 +103,17 @@ module.exports = class CartController {
       const { orderId } = req.body;
       const { id } = req.user;
 
+      const paidDate = Date.now();
+
       const carts = await Cart.findAll({
-        where: { UserId: id },
+        where: { UserId: id, paidStatus: "Pending" },
         include: [
           {
             model: Merchandise,
           },
         ],
       });
-      console.log(carts);
+      // console.log(carts);
 
       const order = await Order.findOne({ where: { OrderId: orderId } });
       if (!order) throw { name: "OrderNotFound" };
@@ -136,7 +138,10 @@ module.exports = class CartController {
         updatedOrder = await order.update({ status: "Paid", paidDate: now() });
 
         for (const cart of carts) {
-          await cart.update({ paidStatus: "Paid" });
+          await cart.update({
+            paidStatus: "Paid",
+            paidDate: paidDate,
+          });
         }
       }
 
