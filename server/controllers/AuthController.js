@@ -34,6 +34,8 @@ module.exports = class AuthController {
         where: { email: email },
       });
 
+      if (!user) throw { name: "UserNotRegistered" };
+
       const comparedPassword = comparePass(password, user.password);
 
       if (user.email !== email) throw { name: "InvalidLoginData" };

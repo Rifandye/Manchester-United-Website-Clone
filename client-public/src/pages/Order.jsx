@@ -12,6 +12,25 @@ function Order() {
 
   const [merchandiseData, setMerchandiseData] = useState([]);
 
+  async function addCart(id) {
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `http://localhost:3000/user/cart`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+        data: {
+          MerchandiseId: id,
+        },
+      });
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function fethData() {
     try {
       const response = await axios({
@@ -48,32 +67,26 @@ function Order() {
             className="absolute inset-0 w-full h-full object-cover rounded-bl-2xl rounded-br-2xl"
           />
         </div>
-        <section className="mt-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-24">
+        <section className="mt-20">
+          <div className="grid grid-cols-5 mx-24 gap-5">
             {merchandiseData.map((item) => (
-              <div
-                key={item.id}
-                className="bg-neutral-200 pb-7 rounded-[20px] border border-black"
-              >
-                <div className="h-[340px] w-full overflow-hidden rounded-tl-2xl rounded-tr-2xl">
+              <div className="bg-red-300 max-h-[500px] grid grid-rows-[5.5fr_1fr_1fr_1fr]">
+                <div className="">
                   <img
-                    src={item.imageUrl || "default-image.jpg"}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
+                    className="object-scale-down"
+                    src={item.imageUrl}
+                    alt=""
                   />
                 </div>
-                <div className="flex flex-col gap-4 mt-[20px] ml-[20px] text-[#1B1D22] font-inter font-semibold">
-                  <div className="text-[15px] h-10 ">{item.name}</div>
-                  <div className="font-semibold text-lg mt-2">
-                    RP.{item.price}
-                  </div>
+                <div className="bg-red-500 flex items-center p-4">
+                  <h1>{item.name}</h1>
                 </div>
-                <div className="flex justify-center items-center gap-3 mt-5">
-                  <button
-                    className="bg-[#1B1D22] text-white px-4 py-2 rounded-full flex items-center gap-2"
-                    onClick={() => handleAddToCart(item.id)}
-                  >
-                    <FaShoppingCart /> Add To Cart
+                <div className="bg-red-600 flex items-center p-4">
+                  <p className="text-[12px]">RP.{item.price}</p>
+                </div>
+                <div className="bg-red-700 flex items-center justify-center">
+                  <button className="bg-red-800 p-[10px] w-[200px] rounded-[20px]">
+                    Add To Cart
                   </button>
                 </div>
               </div>

@@ -8,6 +8,26 @@ function Cart() {
   const [cartData, setCartData] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
+  async function removeData(id) {
+    try {
+      const response = await axios({
+        method: "DELETE",
+        url: `http://localhost:3000/user/remove/cart/${id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      });
+
+      console.log(response);
+
+      if (response.status === 200) {
+        fethData();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function fethData() {
     try {
       const response = await axios({
@@ -28,6 +48,7 @@ function Cart() {
         (acc, curr) => acc + curr.Merchandise.price,
         0
       );
+
       setTotalPrice(total);
     } catch (error) {
       console.log(error);
@@ -80,9 +101,11 @@ function Cart() {
     });
   };
 
+  console.log(cartData);
+
   return (
     <>
-      <section className="py-8 text-center">
+      <section className="py-8 text-center mt-20">
         <h2 className="text-2xl font-bold border-b-4 border-[#1B1D22] text-[#1B1D22] inline-block py-2">
           Shopping Cart
         </h2>
@@ -108,13 +131,16 @@ function Cart() {
                     {item.Merchandise.description}
                   </div>
                   <div className="mt-2">
-                    <button className="text-red-500 hover:text-red-700 mr-2">
+                    <button
+                      onClick={() => removeData(item.id)}
+                      className="text-red-500 hover:text-red-700 mr-2"
+                    >
                       <i className="fas fa-trash"></i>
                     </button>
                   </div>
                 </div>
                 <div className="ml-auto font-semibold">
-                  ${item.Merchandise.price}
+                  RP.{item.Merchandise.price}
                 </div>
               </div>
             ))}
@@ -123,7 +149,7 @@ function Cart() {
             <div className="text-xl font-semibold mb-4">Summary</div>
             <div className="">
               <div className="text-lg font-semibold text-gray-800 mb-5">
-                Total Price: ${totalPrice}
+                Total Price: RP.{totalPrice}
               </div>
             </div>
             <button
