@@ -19,11 +19,20 @@ const errorHandler = (err, req, res, next) => {
     case "InvalidLoginData":
       res.status(400).json({ message: "Invalid Email/Password" });
       break;
+    case "UserNotRegistered":
+      res.status(404).json({ message: "User Not Found" });
+      break;
     case "InvalidMerchId":
       res.status(404).json({ message: "Merchandise Not Found" });
       break;
     case "OrderNotFound":
       res.status(404).json({ message: "Order Not Found" });
+      break;
+    case "CannotRemovePaidMerch":
+      res.status(400).json({ message: "Cannot Remove Paid Merchandise" });
+      break;
+    case "CartNotFound":
+      res.status(400).json({ message: "Cart Not Found" });
       break;
     default:
       console.log(err);

@@ -12,6 +12,9 @@ module.exports = {
       paidStatus: {
         type: Sequelize.STRING,
       },
+      paidDate: {
+        type: Sequelize.DATE,
+      },
       UserId: {
         type: Sequelize.INTEGER,
         references: {

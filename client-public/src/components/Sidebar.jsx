@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FaUser, FaShoppingCart, FaSignOutAlt, FaTimes } from "react-icons/fa";
 import "./Sidebar.css";
 
 function Sidebar({ isOpen, onClose }) {
@@ -13,27 +14,32 @@ function Sidebar({ isOpen, onClose }) {
   return (
     <div className={`sidebar ${isOpen ? "open" : ""}`}>
       <div className="sidebar-content">
-        <div className="sidebar-header">
-          <h2>Menu</h2>
-          <button className="close-btn" onClick={onClose}>
-            &times;
-          </button>
+        <div>
+          <div className="sidebar-header">
+            <h2>Menu</h2>
+            <button className="close-btn" onClick={onClose}>
+              <FaTimes />
+            </button>
+          </div>
+          <ul className="sidebar-menu">
+            <li>
+              <Link to="/profile" onClick={onClose}>
+                <FaUser className="icon" />
+                Profile
+              </Link>
+            </li>
+            <li>
+              <Link to="/cart" onClick={onClose}>
+                <FaShoppingCart className="icon" />
+                Cart
+              </Link>
+            </li>
+          </ul>
         </div>
-        <ul className="sidebar-menu">
-          <li>
-            <Link to="/profile" onClick={onClose}>
-              Profile
-            </Link>
-          </li>
-          <li>
-            <Link to="/cart" onClick={onClose}>
-              Cart
-            </Link>
-          </li>
-          <li>
-            <button onClick={logOut}>Logout</button>
-          </li>
-        </ul>
+        <button className="sidebar-menu button" onClick={logOut}>
+          <FaSignOutAlt className="icon" />
+          Logout
+        </button>
       </div>
     </div>
   );

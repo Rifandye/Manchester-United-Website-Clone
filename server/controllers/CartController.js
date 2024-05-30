@@ -2,7 +2,6 @@ const { default: axios } = require("axios");
 const { Cart, Merchandise, User, Order } = require("../models");
 const midtransClient = require("midtrans-client");
 const { v4: uuidv4 } = require("uuid");
-const { now } = require("sequelize/lib/utils");
 
 module.exports = class CartController {
   static async addCart(req, res, next) {
@@ -16,6 +15,31 @@ module.exports = class CartController {
       });
 
       res.status(201).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async removeCartById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const user = req.user;
+      console.log(user, "<<<< User");
+      const data = await Cart.findOne({
+        where: { id: id, UserId: req.user.id },
+      });
+
+      if (!data) throw { name: "CartNotFound" };
+      if (data.paidStatus === "Paid") throw { name: "CannotRemovePaidMerch" };
+
+      await Cart.destroy({
+        where: { UserId: req.user.id, id: id },
+      });
+
+      res.status(200).json({
+        message: `The Merchandise with name: ${data.name} has been deleted`,
+        data,
+      });
     } catch (error) {
       next(error);
     }
@@ -103,15 +127,17 @@ module.exports = class CartController {
       const { orderId } = req.body;
       const { id } = req.user;
 
+      const paidDate = Date.now();
+
       const carts = await Cart.findAll({
-        where: { UserId: id },
+        where: { UserId: id, paidStatus: "Pending" },
         include: [
           {
             model: Merchandise,
           },
         ],
       });
-      console.log(carts);
+      // console.log(carts);
 
       const order = await Order.findOne({ where: { OrderId: orderId } });
       if (!order) throw { name: "OrderNotFound" };
@@ -136,7 +162,10 @@ module.exports = class CartController {
         updatedOrder = await order.update({ status: "Paid", paidDate: now() });
 
         for (const cart of carts) {
-          await cart.update({ paidStatus: "Paid" });
+          await cart.update({
+            paidStatus: "Paid",
+            paidDate: paidDate,
+          });
         }
       }
 
