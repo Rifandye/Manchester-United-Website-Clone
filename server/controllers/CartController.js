@@ -127,7 +127,7 @@ module.exports = class CartController {
       const { orderId } = req.body;
       const { id } = req.user;
 
-      const paidDate = Date.now();
+      const paidDate = new Date();
 
       const carts = await Cart.findAll({
         where: { UserId: id, paidStatus: "Pending" },
@@ -161,7 +161,7 @@ module.exports = class CartController {
       ) {
         updatedOrder = await order.update({
           status: "Paid",
-          paidDate: Date.now(),
+          paidDate: new Date(),
         });
 
         for (const cart of carts) {
