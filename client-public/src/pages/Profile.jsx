@@ -30,11 +30,14 @@ function Profile() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://localhost:3000/user/cart", {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-          },
-        });
+        const response = await axios.get(
+          import.meta.env.VITE_BASE_URL + "/user/cart",
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+          }
+        );
 
         const paidData = response.data.filter(
           (item) => item.paidStatus === "Paid"
@@ -148,7 +151,7 @@ function Profile() {
                           </div>
                         </div>
                         <div className="text-sm text-gray-600">
-                          <span className="font-semibold">Price:</span> $
+                          <span className="font-semibold">Price:</span> RP.
                           {transaction.Merchandise.price}
                         </div>
                       </div>
