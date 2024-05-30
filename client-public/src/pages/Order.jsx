@@ -16,7 +16,7 @@ function Order() {
     try {
       const response = await axios({
         method: "POST",
-        url: `http://localhost:3000/user/cart`,
+        url: import.meta.env.VITE_BASE_URL + "/user/cart",
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -35,7 +35,7 @@ function Order() {
     try {
       const response = await axios({
         method: "GET",
-        url: import.meta.env.VITE_BASE_URL + "/pub/merchandises",
+        url: import.meta.env.VITE_BASE_URL + "/pub/merchandise",
       });
 
       console.log(response.data);
@@ -68,25 +68,29 @@ function Order() {
           />
         </div>
         <section className="mt-20">
-          <div className="grid grid-cols-5 mx-24 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mx-5 sm:mx-10 md:mx-20 lg:mx-32">
             {merchandiseData.map((item) => (
-              <div className="bg-red-300 max-h-[500px] grid grid-rows-[5.5fr_1fr_1fr_1fr]">
-                <div className="">
-                  <img
-                    className="object-scale-down"
-                    src={item.imageUrl}
-                    alt=""
-                  />
-                </div>
-                <div className="bg-red-500 flex items-center p-4">
-                  <h1>{item.name}</h1>
-                </div>
-                <div className="bg-red-600 flex items-center p-4">
-                  <p className="text-[12px]">RP.{item.price}</p>
-                </div>
-                <div className="bg-red-700 flex items-center justify-center">
-                  <button className="bg-red-800 p-[10px] w-[200px] rounded-[20px]">
-                    Add To Cart
+              <div
+                key={item.id}
+                className="rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+              >
+                <img
+                  className="w-full h-70 object-cover"
+                  src={item.imageUrl}
+                  alt=""
+                />
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-gray-800 h-[80px] mb-2">
+                    {item.name}
+                  </h3>
+                  <div className="text-gray-600 mb-2 h-[35px]">
+                    RP. {item.price}
+                  </div>
+                  <button
+                    onClick={() => addCart(item.id)}
+                    className="bg-[#1B1D22] text-white px-4 py-2 rounded-full flex items-center justify-center w-full transition-all duration-300 hover:bg-gray-800"
+                  >
+                    <FaShoppingCart className="mr-2" /> Add To Cart
                   </button>
                 </div>
               </div>
@@ -97,11 +101,11 @@ function Order() {
       <div className="fixed bottom-8 right-8">
         <div className="relative">
           <FaShoppingCart
-            className="text-3xl text-[#1B1D22] cursor-pointer"
+            className="text-3xl text-[#1B1D22] cursor-pointer hover:text-gray-800 transition-colors duration-300"
             onClick={() => handleNavigation("/cart")}
           />
           {cartCount > 0 && (
-            <span className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+            <span className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs animate-pulse">
               {cartCount}
             </span>
           )}

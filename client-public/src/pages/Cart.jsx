@@ -12,7 +12,7 @@ function Cart() {
     try {
       const response = await axios({
         method: "DELETE",
-        url: `http://localhost:3000/user/remove/cart/${id}`,
+        url: import.meta.env.VITE_BASE_URL + `/user/remove/cart/${id}`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -32,7 +32,7 @@ function Cart() {
     try {
       const response = await axios({
         method: "GET",
-        url: "http://localhost:3000/user/cart",
+        url: import.meta.env.VITE_BASE_URL + "/user/cart",
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -61,7 +61,7 @@ function Cart() {
 
   const handlePayment = async () => {
     const { data } = await axios.get(
-      "http://localhost:3000/user/midtrans/payment",
+      import.meta.env.VITE_BASE_URL + "/user/midtrans/payment",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -69,23 +69,28 @@ function Cart() {
       }
     );
 
-    console.log(data);
+    console.log(data.orderId, "<<< Order");
 
     window.snap.pay(data.transaction.token, {
       onSuccess: async function (result) {
-        console.log(result);
-        await axios.patch(
-          "http://localhost:3000/user/buy",
-          {
-            orderId: data.orderId,
-          },
-          {
+        try {
+          console.log(result);
+          const response = await axios({
+            method: "PATCH",
+            url: import.meta.env.VITE_BASE_URL + "/user/buy",
             headers: {
               Authorization: "Bearer " + localStorage.getItem("access_token"),
             },
-          }
-        );
-        navigate("/");
+            data: {
+              orderId: data.orderId,
+            },
+          });
+
+          console.log(response.data);
+          navigate("/profile");
+        } catch (error) {
+          console.log(error);
+        }
       },
       onPending: function (result) {
         alert("wating your payment!");

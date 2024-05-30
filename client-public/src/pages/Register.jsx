@@ -1,11 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  AiOutlineUser,
-  AiOutlineMail,
-  AiOutlinePhone,
-  AiOutlineLock,
-} from "react-icons/ai";
 import "./Register.css";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -14,10 +8,9 @@ function Register() {
   const navigate = useNavigate();
 
   const [registerData, setRegisterData] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     email: "",
-    phoneNumber: "",
     password: "",
   });
 
@@ -35,7 +28,7 @@ function Register() {
     try {
       const response = await axios({
         method: "POST",
-        url: import.meta.env.VITE_BASE_URL + "/add-user",
+        url: import.meta.env.VITE_BASE_URL + "/register",
         data: registerData,
       });
 
@@ -64,9 +57,9 @@ function Register() {
                         <input
                           className="pl-2 pr-16 py-4 text-black w-full placeholder-black outline-none bg-transparent"
                           type="text"
-                          name="firstname"
+                          name="firstName"
                           placeholder="First Name"
-                          value={registerData.firstname}
+                          value={registerData.firstName}
                           onChange={handleInputRegisterForm}
                         />
                       </div>
@@ -74,9 +67,9 @@ function Register() {
                         <input
                           className="pl-2 pr-16 py-4 text-black w-full placeholder-black outline-none bg-transparent"
                           type="text"
-                          name="lastname"
+                          name="lastName"
                           placeholder="Last Name"
-                          value={registerData.lastname}
+                          value={registerData.lastName}
                           onChange={handleInputRegisterForm}
                         />
                       </div>
@@ -87,16 +80,6 @@ function Register() {
                           name="email"
                           placeholder="Email"
                           value={registerData.email}
-                          onChange={handleInputRegisterForm}
-                        />
-                      </div>
-                      <div className="mb-2 border border-black focus-within:border-red-800 overflow-hidden rounded-3xl flex items-center">
-                        <input
-                          className="pl-2 pr-16 py-4 text-black w-full placeholder-black outline-none bg-transparent"
-                          type="text"
-                          name="phoneNumber"
-                          placeholder="Phone Number"
-                          value={registerData.phoneNumber}
                           onChange={handleInputRegisterForm}
                         />
                       </div>
@@ -127,7 +110,7 @@ function Register() {
                     </form>
                   </div>
                 </div>
-              </div>  
+              </div>
             </div>
           </div>
         </div>

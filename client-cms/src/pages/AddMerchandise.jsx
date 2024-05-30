@@ -6,36 +6,19 @@ import "react-toastify/dist/ReactToastify.css";
 
 function AddMerch() {
   const navigate = useNavigate();
-  const [categoryData, setCategoryData] = useState([]);
   const [merchInput, setMerchInput] = useState({
     name: "",
     description: "",
     imageUrl: "",
     price: "",
-    CategoryId: "",
   });
 
   function handleInputMerch(event) {
-    const { name, value, checked } = event.target;
-
-    if (name === "categories") {
-      if (checked) {
-        setMerchInput({
-          ...merchInput,
-          CategoryId: [...merchInput.CategoryId, value],
-        });
-      } else {
-        setMerchInput({
-          ...merchInput,
-          CategoryId: merchInput.CategoryId.filter((id) => id !== value),
-        });
-      }
-    } else {
-      setMerchInput({
-        ...merchInput,
-        [name]: value,
-      });
-    }
+    const { name, value } = event.target;
+    setMerchInput({
+      ...merchInput,
+      [name]: value,
+    });
   }
 
   async function handleSubmitMerch(event) {
@@ -147,26 +130,6 @@ function AddMerch() {
             placeholder="Price"
             onChange={handleInputMerch}
           />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Categories:
-          </label>
-          {categoryData.map((category) => (
-            <div key={category.id} className="flex items-center">
-              <input
-                className="mr-2 leading-tight"
-                type="checkbox"
-                id={category.id}
-                name="categories"
-                value={category.id}
-                onChange={handleInputMerch}
-              />
-              <label className="mr-4 text-gray-700" htmlFor={category.id}>
-                {category.name}
-              </label>
-            </div>
-          ))}
         </div>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

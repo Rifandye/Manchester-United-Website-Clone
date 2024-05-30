@@ -9,7 +9,7 @@ function Profile() {
     try {
       const response = await axios({
         method: "GET",
-        url: "http://localhost:3000/user/profile",
+        url: import.meta.env.VITE_BASE_URL + "/user/profile",
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },

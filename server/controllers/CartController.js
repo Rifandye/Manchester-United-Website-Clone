@@ -1,7 +1,7 @@
-const { default: axios } = require("axios");
 const { Cart, Merchandise, User, Order } = require("../models");
 const midtransClient = require("midtrans-client");
 const { v4: uuidv4 } = require("uuid");
+const axios = require("axios");
 
 module.exports = class CartController {
   static async addCart(req, res, next) {
@@ -159,7 +159,10 @@ module.exports = class CartController {
         response.data.transaction_status === "capture" &&
         response.data.status_code === "200"
       ) {
-        updatedOrder = await order.update({ status: "Paid", paidDate: now() });
+        updatedOrder = await order.update({
+          status: "Paid",
+          paidDate: Date.now(),
+        });
 
         for (const cart of carts) {
           await cart.update({
