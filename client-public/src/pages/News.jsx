@@ -8,7 +8,7 @@ function News() {
     try {
       const response = await axios({
         method: "GET",
-        url: import.meta.env.VITE_BASE_URL + "/pub/news",
+        url: import.meta.env.VITE_BASE_URL + "/pub/news/premiereLeague",
       });
 
       console.log(response.data);

@@ -6,7 +6,7 @@ function Standing() {
   async function fethData() {
     try {
       const response = await axios.get(
-        import.meta.env.VITE_BASE_URL + "/pub/standings"
+        import.meta.env.VITE_BASE_URL + "/pub/standing/premiereLeague"
       );
       if (Array.isArray(response.data) && response.data.length > 0) {
         const standings = response.data[0];

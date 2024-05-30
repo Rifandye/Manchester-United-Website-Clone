@@ -13,41 +13,6 @@ function Login() {
     password: "",
   });
 
-  /*
-  const handleCredentialResponse = async (response) => {
-    try {
-      const { data } = await axios({
-        method: "POST",
-        url: import.meta.env.VITE_BASE_URL + "/auth/google",
-        headers: {
-          "google-token": response.credential,
-        },
-      });
-      localStorage.setItem("access_token", data.access_token);
-
-      console.log(data);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    google.accounts.id.initialize({
-      client_id:
-        "140039142524-gb25mj0c4bdplqi54gupm0hdd5sae81h.apps.googleusercontent.com",
-      callback: handleCredentialResponse,
-    });
-    //ini button
-    google.accounts.id.renderButton(
-      document.getElementById("buttonDiv"),
-      { theme: "outline", size: "large" } // customization attributes
-    );
-    //ini one tap
-    google.accounts.id.prompt(); // also display the One Tap dialog
-  }, []);
-*/
-
   function handleInputLoginForm(event) {
     const { name, value } = event.target;
     setLoginInput({
@@ -62,7 +27,7 @@ function Login() {
     try {
       const response = await axios({
         method: "POST",
-        url: "http://localhost:3000/login",
+        url: import.meta.env.VITE_BASE_URL + "/login",
         data: loginInput,
       });
 
