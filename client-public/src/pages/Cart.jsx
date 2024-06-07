@@ -18,8 +18,6 @@ function Cart() {
         },
       });
 
-      console.log(response);
-
       if (response.status === 200) {
         fethData();
       }
@@ -38,7 +36,6 @@ function Cart() {
         },
       });
 
-      console.log(response.data);
       const pendingItems = response.data.filter(
         (item) => item.paidStatus === "Pending"
       );
@@ -69,12 +66,9 @@ function Cart() {
       }
     );
 
-    console.log(data.orderId, "<<< Order");
-
     window.snap.pay(data.transaction.token, {
       onSuccess: async function (result) {
         try {
-          console.log(result);
           const response = await axios({
             method: "PATCH",
             url: import.meta.env.VITE_BASE_URL + "/user/buy",
@@ -86,7 +80,6 @@ function Cart() {
             },
           });
 
-          console.log(response.data);
           navigate("/profile");
         } catch (error) {
           console.log(error);
@@ -105,8 +98,6 @@ function Cart() {
       },
     });
   };
-
-  console.log(cartData);
 
   return (
     <>

@@ -11,7 +11,6 @@ function News() {
         url: import.meta.env.VITE_BASE_URL + "/pub/news/premiereLeague",
       });
 
-      console.log(response.data);
       setNewsData(response.data);
     } catch (error) {
       console.log(error.response.data);

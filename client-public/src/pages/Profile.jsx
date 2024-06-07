@@ -15,8 +15,6 @@ function Profile() {
         },
       });
 
-      console.log(response.data);
-
       setUserdata(response.data);
     } catch (error) {
       console.log(error);
@@ -52,8 +50,6 @@ function Profile() {
           }
           return acc;
         }, {});
-
-        console.log(groupedPaidTransactions);
 
         setPaidTransactions(groupedPaidTransactions);
       } catch (error) {
