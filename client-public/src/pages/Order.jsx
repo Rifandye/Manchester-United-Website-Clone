@@ -25,7 +25,6 @@ function Order() {
         },
       });
 
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +86,7 @@ function Order() {
                     RP. {item.price}
                   </div>
                   <button
-                    onClick={() => addCart(item.id)}
+                    onClick={() => [addCart(item.id), handleAddToCart(item.id)]}
                     className="bg-[#1B1D22] text-white px-4 py-2 rounded-full flex items-center justify-center w-full transition-all duration-300 hover:bg-gray-800"
                   >
                     <FaShoppingCart className="mr-2" /> Add To Cart

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 
 function Login() {
@@ -36,9 +35,14 @@ function Login() {
       localStorage.setItem("access_token", response.data.access_token);
 
       navigate("/");
-      console.log("Redirecting to homepage...");
     } catch (error) {
-      toast.error("Invalid credentials!");
+      console.log(error.response.data.message);
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Credentials",
+        text: error.response.data.message,
+        footer: '<a href="#">Why do I have this issue?</a>',
+      });
     }
   }
 
