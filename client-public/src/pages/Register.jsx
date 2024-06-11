@@ -25,16 +25,34 @@ function Register() {
   async function handleRegisterSubmit(event) {
     event.preventDefault();
 
+    const toastId = toast.loading("Registering...", {
+      theme: "dark",
+    });
+
     try {
-      const response = await axios({
+      await axios({
         method: "POST",
         url: import.meta.env.VITE_BASE_URL + "/register",
         data: registerData,
       });
 
+      toast.update(toastId, {
+        render: "Register Successful!",
+        type: "success",
+        isLoading: false,
+        autoClose: 3000,
+        closeOnClick: true,
+      });
+
       navigate("/login");
     } catch (error) {
-      toast.error("Invalid credentials");
+      toast.update(toastId, {
+        render: error.response?.data?.message || "Register Failed!",
+        type: "error",
+        isLoading: false,
+        autoClose: 5000,
+        closeOnClick: true,
+      });
     }
   }
 
