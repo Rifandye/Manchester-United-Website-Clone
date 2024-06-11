@@ -65,10 +65,10 @@ function Login() {
           <div className="m-20 h-4/5 grid grid-rows-[1fr_1.5fr]">
             <div className="flex justify-center items-center">
               <div className="text-center">
-                <h1 className="text-black text-4xl mb-4">
+                <h1 className="text-black text-3xl mb-4">
                   Log Into Your Account
                 </h1>
-                <h2 className="text-black text-2xl mt-4">
+                <h2 className="text-black text-1xl mt-4">
                   Good To Have You Back!
                 </h2>
               </div>

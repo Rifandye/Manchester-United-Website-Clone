@@ -57,85 +57,78 @@ function Register() {
   }
 
   return (
-    <div className="outer-container register-background">
-      <div className="grid-container">
-        <div className="register-container">
-          <div className="register-holder">
-            <div className="flex-form flex flex-wrap  justify-center">
-              <div className="w-full md:w-1/2">
-                <div className="px-4 max-w-lg mx-auto">
-                  <div className="flex flex-wrap items-center justify-between mb-40"></div>
-                  <div className="text-center mx-auto">
-                    <h3 className="mb-4 text-3xl text-black tracking-5xl">
-                      Let's Register
-                    </h3>
-                    <p className="mb-10 text-black">Good to meet you, Reds!</p>
-                    <form onSubmit={handleRegisterSubmit}>
-                      <div className="mb-2 border border-black focus-within:border-red-800 overflow-hidden rounded-3xl flex items-center">
-                        <input
-                          className="pl-2 pr-16 py-4 text-black w-full placeholder-black outline-none bg-transparent"
-                          type="text"
-                          name="firstName"
-                          placeholder="First Name"
-                          value={registerData.firstName}
-                          onChange={handleInputRegisterForm}
-                        />
-                      </div>
-                      <div className="mb-2 border border-black focus-within:border-red-800 overflow-hidden rounded-3xl flex items-center">
-                        <input
-                          className="pl-2 pr-16 py-4 text-black w-full placeholder-black outline-none bg-transparent"
-                          type="text"
-                          name="lastName"
-                          placeholder="Last Name"
-                          value={registerData.lastName}
-                          onChange={handleInputRegisterForm}
-                        />
-                      </div>
-                      <div className="mb-2 border border-black focus-within:border-red-800 overflow-hidden rounded-3xl flex items-center">
-                        <input
-                          className="pl-2 pr-16 py-4 text-black w-full placeholder-black outline-none bg-transparent"
-                          type="text"
-                          name="email"
-                          placeholder="Email"
-                          value={registerData.email}
-                          onChange={handleInputRegisterForm}
-                        />
-                      </div>
-                      <div className="mb-6 relative border border-black focus-within:border-red-800 overflow-hidden rounded-3xl flex items-center">
-                        <input
-                          className="pl-2 pr-16 py-4 text-black w-full placeholder-black outline-none bg-transparent"
-                          type="password"
-                          name="password"
-                          placeholder="Password"
-                          value={registerData.password}
-                          onChange={handleInputRegisterForm}
-                        />
-                      </div>
-                      <div className="w-auto p-2">
-                        <p className="text-sm text-black">
-                          <span>Already have an account?</span>
-                          <Link to="/login" className="underline">
-                            Sign in
-                          </Link>
-                        </p>
-                      </div>
-                      <button
-                        type="submit"
-                        className="block mx-auto mt-8 mb-6 px-14 py-3 text-center font-medium tracking-2xl border-2 border-red-800 bg-red-800 hover:bg-red-700 text-black focus:ring-4 focus:ring-red-800 focus:ring-opacity-40 rounded-full transition duration-300"
-                      >
-                        Register
-                      </button>
-                    </form>
-                  </div>
-                </div>
+    <div className="h-screen">
+      <div className="grid grid-cols-[1.5fr_0.5fr] h-full">
+        <div className="">
+          <div className="m-20 h-4/5 grid grid-rows-[0.5fr_1.5fr]">
+            <div className="flex justify-center items-center">
+              <div className="text-center">
+                <h1 className="text-black text-3xl mb-4">
+                  Log Into Your Account
+                </h1>
+                <h2 className="text-black text-1xl mt-4">
+                  Good To Have You Back!
+                </h2>
               </div>
+            </div>
+            <div className="flex flex-col justify-center items-center ">
+              <form onSubmit={handleRegisterSubmit}>
+                <div className="w-[400px]">
+                  <input
+                    className="border border-black focus-within:border-red-800 rounded-3xl text-black placeholder-black outline-none bg-transparent"
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    value={registerData.firstName}
+                    onChange={handleInputRegisterForm}
+                  />
+                  <input
+                    className="border border-black focus-within:border-red-800 rounded-3xl text-black placeholder-black outline-none bg-transparent"
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    value={registerData.lastName}
+                    onChange={handleInputRegisterForm}
+                  />
+                  <input
+                    className="border border-black focus-within:border-red-800 rounded-3xl text-black placeholder-black outline-none bg-transparent"
+                    type="text"
+                    name="email"
+                    placeholder="Email"
+                    value={registerData.email}
+                    onChange={handleInputRegisterForm}
+                  />
+                  <input
+                    className="border border-black focus-within:border-red-800 rounded-3xl text-black placeholder-black outline-none bg-transparent"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={registerData.password}
+                    onChange={handleInputRegisterForm}
+                  />
+                </div>
+                <p className="text-center text-sm text-black my-4">
+                  Already have an account?
+                  <Link to="/login" className="underline">
+                    Sign In
+                  </Link>
+                </p>
+                <button
+                  className="block mx-auto mt-8 mb-6 px-14 py-3 text-center font-medium tracking-2xl border-2 border-red-800 bg-red-800 hover:bg-red-700 text-black focus:ring-4 focus:ring-red-800 focus:ring-opacity-40 rounded-full transition duration-300"
+                  type="submit"
+                >
+                  Register
+                </button>
+              </form>
             </div>
           </div>
         </div>
-        <div className="image-container">
-          <div className="image-holder">
-            <img src="/banner3.jpeg" alt="banner photo" />
-          </div>
+        <div>
+          <img
+            className="object-cover h-full"
+            src="banner3.jpeg"
+            alt="Banner"
+          />
         </div>
       </div>
     </div>
