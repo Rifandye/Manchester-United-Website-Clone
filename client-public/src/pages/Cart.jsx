@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Bounce, toast } from "react-toastify";
+import { formatPrice } from "../utils/PriceConverter";
 
 function Cart() {
   const navigate = useNavigate();
@@ -20,9 +22,20 @@ function Cart() {
 
       if (response.status === 200) {
         fethData();
+        toast.success("Merch Deleted", {
+          theme: "dark",
+          transition: Bounce,
+          pauseOnHover: false,
+          closeOnClick: true,
+        });
       }
     } catch (error) {
-      console.log(error);
+      toast.error("Unsuccesfull Deleted a March, Try again Later", {
+        theme: "dark",
+        transition: Bounce,
+        pauseOnHover: false,
+        closeOnClick: true,
+      });
     }
   }
 
@@ -81,20 +94,41 @@ function Cart() {
           });
 
           navigate("/profile");
+          toast.success("Payment successful!", {
+            theme: "dark",
+            transition: Bounce,
+            pauseOnHover: false,
+            closeOnClick: true,
+          });
         } catch (error) {
           console.log(error);
         }
       },
       onPending: function (result) {
-        alert("wating your payment!");
+        toast.info("Waiting for your payment!", {
+          theme: "dark",
+          transition: Bounce,
+          pauseOnHover: false,
+          closeOnClick: true,
+        });
         console.log(result);
       },
       onError: function (result) {
-        alert("payment failed!");
+        toast.error("Payment failed!", {
+          theme: "dark",
+          transition: Bounce,
+          pauseOnHover: false,
+          closeOnClick: true,
+        });
         console.log(result);
       },
       onClose: function () {
-        alert("you closed the popup without finishing the payment");
+        toast.warning("You closed the popup without finishing the payment.", {
+          theme: "dark",
+          transition: Bounce,
+          pauseOnHover: false,
+          closeOnClick: true,
+        });
       },
     });
   };
@@ -136,7 +170,7 @@ function Cart() {
                   </div>
                 </div>
                 <div className="ml-auto font-semibold">
-                  RP.{item.Merchandise.price}
+                  {formatPrice(item.Merchandise.price)}
                 </div>
               </div>
             ))}
@@ -145,7 +179,7 @@ function Cart() {
             <div className="text-xl font-semibold mb-4">Summary</div>
             <div className="">
               <div className="text-lg font-semibold text-gray-800 mb-5">
-                Total Price: RP.{totalPrice}
+                Total Price: {formatPrice(totalPrice)}
               </div>
             </div>
             <button

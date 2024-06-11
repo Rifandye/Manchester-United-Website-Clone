@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import axios from "axios";
 import "./Login.css";
+import { toast } from "react-toastify";
 
 function Login() {
   const navigate = useNavigate();
@@ -23,6 +23,10 @@ function Login() {
   async function handleSubmitLogin(event) {
     event.preventDefault();
 
+    const toastId = toast.loading("Logging in", {
+      theme: "dark",
+    });
+
     try {
       const response = await axios({
         method: "POST",
@@ -30,18 +34,26 @@ function Login() {
         data: loginInput,
       });
 
-      const { access_token, role } = response.data;
-
       localStorage.setItem("access_token", response.data.access_token);
+
+      toast.update(toastId, {
+        render: "Login successful!",
+        type: "success",
+        isLoading: false,
+        autoClose: 3000,
+        closeOnClick: true,
+      });
 
       navigate("/");
     } catch (error) {
       console.log(error.response.data.message);
-      Swal.fire({
-        icon: "error",
-        title: "Invalid Credentials",
-        text: error.response.data.message,
-        footer: '<a href="#">Why do I have this issue?</a>',
+
+      toast.update(toastId, {
+        render: error.response?.data?.message || "Login failed!",
+        type: "error",
+        isLoading: false,
+        autoClose: 5000,
+        closeOnClick: true,
       });
     }
   }

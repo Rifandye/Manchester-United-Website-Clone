@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { increment } from "../store/counterSlice";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { formatPrice } from "../utils/PriceConverter";
 
 function Order() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function Order() {
 
   async function addCart(id) {
     try {
-      const response = await axios({
+      await axios({
         method: "POST",
         url: import.meta.env.VITE_BASE_URL + "/user/cart",
         headers: {
@@ -24,7 +25,6 @@ function Order() {
           MerchandiseId: id,
         },
       });
-
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +37,6 @@ function Order() {
         url: import.meta.env.VITE_BASE_URL + "/pub/merchandise",
       });
 
-      console.log(response.data);
       setMerchandiseData(response.data);
     } catch (error) {
       console.log(error);
@@ -83,7 +82,7 @@ function Order() {
                     {item.name}
                   </h3>
                   <div className="text-gray-600 mb-2 h-[35px]">
-                    RP. {item.price}
+                    {formatPrice(item.price)}
                   </div>
                   <button
                     onClick={() => [addCart(item.id), handleAddToCart(item.id)]}
