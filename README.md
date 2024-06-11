@@ -5,18 +5,22 @@ This project is an ambitious attempt to recreate the official Manchester United 
 ## Features
 
 - **Real-Time Updates**: Stay informed with the latest news, match results, and club announcements in real-time.
-- **Match Schedules**: Access up-to-date schedules for upcoming matches, including fixture details and venues.
-- **Player Information**: Explore detailed profiles, statistics, and updates about Manchester United players.
 - **E-commerce Platform**: Enjoy a seamless shopping experience with the integrated e-commerce platform, allowing users to browse, search, and purchase official Manchester United merchandise directly from the website.
 
 ## Technologies Used
 
-- PostgreSQL
-- Express.js
-- Amazon Web Services (AWS)
-- React.js
-- Redux
-- JavaScript
+- ### Backend
+
+  > - PostgreSQL
+  > - Express.js
+  > - JavaScript
+  > - Firebase
+
+- ### Frontend
+  > - React.js
+  > - Redux
+  > - Amazon Web Services (AWS)
+  > - Firebase
 
 ## Try It Out
 
