@@ -2,12 +2,21 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaShoppingCart, FaSignOutAlt, FaTimes } from "react-icons/fa";
 import "./Sidebar.css";
+import { Bounce, toast } from "react-toastify";
 
 function Sidebar({ isOpen, onClose }) {
   const navigate = useNavigate();
 
   function logOut() {
     localStorage.clear();
+
+    toast.success("Log Out Successfull!", {
+      theme: "dark",
+      transition: Bounce,
+      pauseOnHover: false,
+      closeOnClick: true,
+    });
+
     navigate("/login");
   }
 
