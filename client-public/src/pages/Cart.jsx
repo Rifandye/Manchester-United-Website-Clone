@@ -163,28 +163,28 @@ function Cart() {
                   <div className="mt-2">
                     <button
                       onClick={() => removeData(item.id)}
-                      className="text-red-500 hover:text-red-700 mr-2"
+                      className="text-black hover:text-red-700 mr-2"
                     >
                       <i className="fas fa-trash"></i>
                     </button>
                   </div>
                 </div>
                 <div className="ml-auto font-semibold">
-                  {formatPrice(item.Merchandise.price)}
+                  {`Rp ${formatPrice(item.Merchandise.price)}`}
                 </div>
               </div>
             ))}
           </div>
-          <div className="bg-gray-200 p-6 rounded-lg shadow-md overflow-y-auto h-[200px] grid grid-flow-row">
+          <div className="bg-gray-100 p-6 rounded-lg shadow-md overflow-y-auto h-[200px] grid grid-flow-row">
             <div className="text-xl font-semibold mb-4">Summary</div>
             <div className="">
               <div className="text-lg font-semibold text-gray-800 mb-5">
-                Total Price: {formatPrice(totalPrice)}
+                Total Price: {`Rp ${formatPrice(totalPrice)}`}
               </div>
             </div>
             <button
               onClick={handlePayment}
-              className="bg-[#1B1D22] text-white px-6 py-3 rounded-md hover:bg-[#141518] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out transform hover:scale-105 w-full md:w-auto"
+              className="bg-red-700 text-white px-6 py-3 rounded-md hover:bg-red-800 focus:outline-none transition duration-300 ease-in-out transform  w-full md:w-auto"
             >
               Proceed to Payment
             </button>

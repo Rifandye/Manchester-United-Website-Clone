@@ -1,6 +1,6 @@
 export function formatPrice(price) {
   return new Intl.NumberFormat("id-ID", {
-    style: "currency",
+    style: "decimal",
     currency: "IDR",
   }).format(price);
 }
