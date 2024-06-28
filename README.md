@@ -14,13 +14,13 @@ This project is an ambitious attempt to recreate the official Manchester United 
   > - PostgreSQL
   > - Express.js
   > - JavaScript
-  > - Firebase
+  > - Hosting: AWS EC2
 
 - ### Frontend
   > - React.js
   > - Redux
-  > - Amazon Web Services (AWS)
   > - Firebase
+  > - Hosting: Firebase
 
 ## Try It Out
 

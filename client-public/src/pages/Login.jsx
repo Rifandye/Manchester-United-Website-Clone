@@ -66,10 +66,10 @@ function Login() {
             <div className="flex justify-center items-center">
               <div className="text-center">
                 <h1 className="text-black text-3xl mb-4">
-                  Log Into Your Account
+                  Welcome Back, Red Devil!
                 </h1>
                 <h2 className="text-black text-1xl mt-4">
-                  Good To Have You Back!
+                  Log in and Continue the Journey
                 </h2>
               </div>
             </div>
@@ -95,7 +95,10 @@ function Login() {
                 </div>
                 <p className="text-center text-sm text-black my-4">
                   Don't have an account?
-                  <Link to="/register" className="underline">
+                  <Link
+                    to="/register"
+                    className="underline text-red-800 hover:text-red-700"
+                  >
                     Sign up
                   </Link>
                 </p>

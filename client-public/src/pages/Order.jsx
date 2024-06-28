@@ -78,11 +78,11 @@ function Order() {
                   alt=""
                 />
                 <div className="p-4">
-                  <h3 className="text-lg font-semibold text-gray-800 h-[80px] mb-2">
+                  <h3 className="text-lg font-semibold text-gray-800 h-[80px] mb-2 text-center">
                     {item.name}
                   </h3>
-                  <div className="text-gray-600 mb-2 h-[35px]">
-                    {formatPrice(item.price)}
+                  <div className="text-gray-600 mb-2 h-[35px] text-center items-center">
+                    {`Rp ${formatPrice(item.price)}`}
                   </div>
                   <button
                     onClick={() => [addCart(item.id), handleAddToCart(item.id)]}
