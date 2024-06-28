@@ -64,10 +64,10 @@ function Register() {
             <div className="flex justify-center items-center">
               <div className="text-center">
                 <h1 className="text-black text-3xl mb-4">
-                  Log Into Your Account
+                  Join the Red Devils!
                 </h1>
                 <h2 className="text-black text-1xl mt-4">
-                  Good To Have You Back!
+                  Become Part of Manchester United's Legacy
                 </h2>
               </div>
             </div>
@@ -109,7 +109,10 @@ function Register() {
                 </div>
                 <p className="text-center text-sm text-black my-4">
                   Already have an account?
-                  <Link to="/login" className="underline">
+                  <Link
+                    to="/login"
+                    className="underline text-red-800 hover:text-red-700"
+                  >
                     Sign In
                   </Link>
                 </p>
