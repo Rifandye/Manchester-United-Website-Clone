@@ -1,6 +1,6 @@
 # Manchester United Website - Clone
 
-This project is an ambitious attempt to recreate the official Manchester United website with a primary focus on delivering real-time updates, match schedules, player information, and more. A key feature of this clone is the integration of a comprehensive e-commerce platform, designed to mimic the official club's merchandise store. This feature allows users to browse, search, and purchase official Manchester United merchandise directly from the website.
+This project is an attempt to recreate the official Manchester United website with a primary focus on delivering real-time updates, match schedules, player information, and more. A key feature of this clone is the integration of a comprehensive e-commerce platform, designed to mimic the official club's merchandise store. This feature allows users to browse, search, and purchase official Manchester United merchandise directly from the website.
 
 ## Features
 
